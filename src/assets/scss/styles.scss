@@ -1,1 +1,18 @@
+// ===========================================
+// VENDOR
+// ===========================================
+@import "variables";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+
+// ===========================================
+// COMPONENTS
+// ===========================================
+@import "components/navbar";
+@import "components/text";
+@import "components/hero-section";
+@import "components/product-card";
+
+// ===========================================
+// PAGES
+// ===========================================
+@import "pages/category";

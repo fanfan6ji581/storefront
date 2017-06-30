@@ -1,0 +1,68 @@
+@import "../../../node_modules/bootstrap/scss/variables";
+
+// override variables
+$brand-primary:         #1d1d20;
+$brand-inverse:         #393935;
+$enable-shadows:        false;
+$navbar-border-radius:  0;
+
+$spacers: (
+  "-0-25":    (x: ($spacer-x * -0.25), y: ($spacer-y * -0.25)),
+  "-0-5":     (x: ($spacer-x * -0.5),  y: ($spacer-y * -0.5)),
+  "-0-75":    (x: ($spacer-x * -0.75), y: ($spacer-y * -0.75)),
+  "-1":       (x: ($spacer-x * -1),    y: ($spacer-y * -1)),
+  "-1-25":    (x: ($spacer-x * -1.25), y: ($spacer-y * -1.25)),
+  "-1-5":     (x: ($spacer-x * -1.5),  y: ($spacer-y * -1.5)),
+  "-1-75":    (x: ($spacer-x * -1.75), y: ($spacer-y * -1.75)),
+  "-2":       (x: ($spacer-x * -2),    y: ($spacer-y * -2)),
+  "-2-25":    (x: ($spacer-x * -2.25), y: ($spacer-y * -2.25)),
+  "-2-5":     (x: ($spacer-x * -2.5),  y: ($spacer-y * -2.5)),
+  "-2-75":    (x: ($spacer-x * -2.75), y: ($spacer-y * -2.75)),
+  "-3":       (x: ($spacer-x * -3),    y: ($spacer-y * -3)),
+  "-3-25":    (x: ($spacer-x * -3.25), y: ($spacer-y * -3.25)),
+  "-3-5":     (x: ($spacer-x * -3.5),  y: ($spacer-y * -3.5)),
+  "-3-75":    (x: ($spacer-x * -3.75), y: ($spacer-y * -3.75)),
+  "-4":       (x: ($spacer-x * -4),    y: ($spacer-y * -4)),
+  "-4-25":    (x: ($spacer-x * -4.25), y: ($spacer-y * -4.25)),
+  "-4-5":     (x: ($spacer-x * -4.5),  y: ($spacer-y * -4.5)),
+  "-4-75":    (x: ($spacer-x * -4.75), y: ($spacer-y * -4.75)),
+  "-5":       (x: ($spacer-x * -5),    y: ($spacer-y * -5)),
+  "-5-25":    (x: ($spacer-x * -5.25), y: ($spacer-y * -5.25)),
+  "-5-5":     (x: ($spacer-x * -5.5),  y: ($spacer-y * -5.5)),
+  "-5-75":    (x: ($spacer-x * -5.75), y: ($spacer-y * -5.75)),
+  "-6":       (x: ($spacer-x * -6),    y: ($spacer-y * -6)),
+  "0":        (x: ($spacer-x * 0),    y: ($spacer-y * 0)),
+  "0-25":     (x: ($spacer-x * 0.25), y: ($spacer-y * 0.25)),
+  "0-5":      (x: ($spacer-x * 0.5),  y: ($spacer-y * 0.5)),
+  "0-75":     (x: ($spacer-x * 0.75), y: ($spacer-y * 0.75)),
+  "1":        (x: ($spacer-x * 1),    y: ($spacer-y * 1)),
+  "1-25":     (x: ($spacer-x * 1.25), y: ($spacer-y * 1.25)),
+  "1-5":      (x: ($spacer-x * 1.5),  y: ($spacer-y * 1.5)),
+  "1-75":     (x: ($spacer-x * 1.75), y: ($spacer-y * 1.75)),
+  "2":        (x: ($spacer-x * 2),    y: ($spacer-y * 2)),
+  "2-25":     (x: ($spacer-x * 2.25), y: ($spacer-y * 2.25)),
+  "2-5":      (x: ($spacer-x * 2.5),  y: ($spacer-y * 2.5)),
+  "2-75":     (x: ($spacer-x * 2.75), y: ($spacer-y * 2.75)),
+  "3":        (x: ($spacer-x * 3),    y: ($spacer-y * 3)),
+  "3-25":     (x: ($spacer-x * 3.25), y: ($spacer-y * 3.25)),
+  "3-5":      (x: ($spacer-x * 3.5),  y: ($spacer-y * 3.5)),
+  "3-75":     (x: ($spacer-x * 3.75), y: ($spacer-y * 3.75)),
+  "4":        (x: ($spacer-x * 4),    y: ($spacer-y * 4)),
+  "4-25":     (x: ($spacer-x * 4.25), y: ($spacer-y * 4.25)),
+  "4-5":      (x: ($spacer-x * 4.5),  y: ($spacer-y * 4.5)),
+  "4-75":     (x: ($spacer-x * 4.75), y: ($spacer-y * 4.75)),
+  "5":        (x: ($spacer-x * 5),    y: ($spacer-y * 5)),
+  "5-25":     (x: ($spacer-x * 5.25), y: ($spacer-y * 5.25)),
+  "5-5":      (x: ($spacer-x * 5.5),  y: ($spacer-y * 5.5)),
+  "5-75":     (x: ($spacer-x * 5.75), y: ($spacer-y * 5.75)),
+  "6":        (x: ($spacer-x * 6),    y: ($spacer-y * 6)),
+);
+
+// cusomize variables
+$shadow-color:    rgba(182, 182, 182, 0.75);
+
+$break-point-xs:  nth(nth($grid-breakpoints, 1), 2);
+$break-point-sm:  nth(nth($grid-breakpoints, 2), 2);
+$break-point-md:  nth(nth($grid-breakpoints, 3), 2);
+$break-point-lg:  nth(nth($grid-breakpoints, 4), 2);
+$break-point-xl:  nth(nth($grid-breakpoints, 5), 2);

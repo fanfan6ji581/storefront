@@ -1,0 +1,15 @@
+.product-card {
+  border: none;
+  h5 {
+    font-size: 1em;
+    font-weight: normal;
+  }
+  h6 {
+    font-weight: normal;
+  }
+  .product-card-img {
+    min-height: 15em;
+    background-size: cover;
+    background-position: center center;
+  }
+}
