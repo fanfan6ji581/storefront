@@ -1,6 +1,6 @@
 <div class="card product-card text-center">
   <div class="product-card-img" [style.background-image]="'url(' + product.image + ')'">
-    <a class="btn btn-primary">VIEW DETAILS</a>
+    <a class="btn btn-primary" [routerLink]="['/product/' + product.slug]">VIEW DETAILS</a>
     <a class="btn">ADD TO CART</a>
   </div>
   <div class="card-block">
