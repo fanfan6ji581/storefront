@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../shared/root.reducers';
+import * as product from './shared/product.actions';
+import { Product } from '../shared/product.model';
 
 @Component({
   selector: 'sf-product',
@@ -8,13 +13,22 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  product$: Observable<Product>;
+  product: Product;
+
+  constructor(private route: ActivatedRoute, private store: Store<fromRoot.State>) {
+    this.product$ = store.select(fromRoot.getProductSelect);
+    this.product$.subscribe(p => this.product = p);
+  }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      // get product by slug
-      params['slug'];
-    });
+    // load product by params slug
+    if (!this.product) {
+      this.route.params.subscribe(params => {
+        // get product by slug
+        this.store.dispatch(new product.SelectAction(params['slug']));
+      });
+    }
   }
 
 }

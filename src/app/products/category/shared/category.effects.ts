@@ -11,20 +11,21 @@ import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
 
-import * as product from './product.actions';
-import { ProductService } from './product.service';
-import { Product } from './product.model';
+import * as categoryActions from './category.actions';
+import { ProductService } from '../../shared/product.service';
+import { Product } from '../../shared/product.model';
 
 
 @Injectable()
-export class ProductEffects {
+export class CategoryEffects {
 
     @Effect()
     search$: Observable<Action> = this.actions$
-        .ofType(product.LOAD)
+        .ofType(categoryActions.LOAD)
         .switchMap(() => this.productService.loadProducts()
-            .map((products: Product[]) => new product.LoadSuccessAction(products))
-            .catch(error => of(new product.LoadFailAction(error))));
+            .map((products: Product[]) => new categoryActions.LoadSuccessAction(products))
+            .catch(error => of(new categoryActions.LoadFailAction(error))));
 
-    constructor(private actions$: Actions, private productService: ProductService) { }
+    constructor(private actions$: Actions,
+        private productService: ProductService) { }
 }

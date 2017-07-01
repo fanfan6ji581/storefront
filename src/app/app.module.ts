@@ -16,9 +16,10 @@ import { LayoutComponent } from './layout/layout.component';
 
 import { ApiService } from './shared/services';
 import { ProductService } from './products/shared/product.service';
-import { ProductEffects } from './products/shared/product.effects';
-import { ProductCardComponent } from './products/product-card/product-card.component';
+import { CategoryEffects } from './products/category/shared/category.effects';
+import { ProductCardComponent } from './products/product/product-card/product-card.component';
 import { reducer } from './shared/root.reducers';
+import { ProductEffects } from './products/product/shared/product.effects';
 
 
 @NgModule({
@@ -37,8 +38,8 @@ import { reducer } from './shared/root.reducers';
     NgbModule.forRoot(),
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    EffectsModule.run(CategoryEffects),
     EffectsModule.run(ProductEffects),
-
   ],
   providers: [
     ApiService,

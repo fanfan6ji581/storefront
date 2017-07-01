@@ -1,11 +1,9 @@
 import { Action } from '@ngrx/store';
-import { Product } from './product.model';
+import { Product } from '../../shared/product.model';
 
-export const LOAD = '[Product] load';
-export const LOAD_SUCCESS = '[Product] load success';
-export const LOAD_FAIL = '[Product] load fail';
-export const SELECT = '[Product] Select';
-export const SELECT_FAIL = '[Product] Select fail';
+export const LOAD = '[Category] load';
+export const LOAD_SUCCESS = '[Category] load success';
+export const LOAD_FAIL = '[Category] load fail';
 
 /**
  * Every action is comprised of at least a type and an optional
@@ -29,15 +27,6 @@ export class LoadFailAction implements Action {
     constructor(public payload: any) { }
 }
 
-export class SelectAction implements Action {
-    readonly type = SELECT;
-    constructor(public payload: string) { }
-}
-
-export class SelectFailAction implements Action {
-    readonly type = SELECT_FAIL;
-    constructor(public payload: any) { }
-}
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -45,6 +34,4 @@ export class SelectFailAction implements Action {
 export type Actions
     = LoadAction
     | LoadSuccessAction
-    | LoadFailAction
-    | SelectAction
-    | SelectFailAction;
+    | LoadFailAction;

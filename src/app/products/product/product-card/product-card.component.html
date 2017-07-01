@@ -1,11 +1,11 @@
 <div class="card product-card text-center">
   <div class="product-card-img" [style.background-image]="'url(' + product.image + ')'">
-    <a class="btn btn-primary" [routerLink]="['/product/' + product.slug]">VIEW DETAILS</a>
+    <a class="btn btn-primary" [routerLink]="['/product/' + product.slug]" (click)="onViewDetail()">VIEW DETAILS</a>
     <a class="btn">ADD TO CART</a>
   </div>
   <div class="card-block">
     <h6 class="text-muted">{{product.brand}}</h6>
-    <h5 class="card-title text-uppercase">{{product.title}}</h5>
-    <p class="text-muted card-text">{{product.price | currency:'USD':true}}</p>
+    <h5 class="text-uppercase">{{product.title}}</h5>
+    <p class="text-muted">{{product.price | currency:'USD':true}}</p>
   </div>
 </div>

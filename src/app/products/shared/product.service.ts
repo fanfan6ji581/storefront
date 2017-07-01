@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from '../../shared/services';
 import { Product } from './product.model';
-// import { HqToolActions } from './hq-tool.actions';
 
 @Injectable()
 export class ProductService {
@@ -12,15 +11,24 @@ export class ProductService {
   private static SITES = 1;
   private static FAVORITE = 2;
 
-  constructor(private api: ApiService,
-    // private hqToolActions: HqToolActions
-  ) {
+  constructor(private api: ApiService) {
   }
 
   loadProducts(): Observable<Product[]> {
     return this.api.get('/products.json')
       .catch((err, caught) => Observable.throw(err))
       .map(products => this.addData(products));
+  }
+
+  /**
+   * similar API for get product by slug
+   * @param slug
+   */
+  loadProductBySlug(slug: string): Observable<Product> {
+    return this.api.get('/products.json')
+      .catch((err, caught) => Observable.throw(err))
+      .map(products => this.addData(products))
+      .map((products: Product[]) => products.find(product => product.slug == slug));
   }
 
   /**
@@ -45,6 +53,10 @@ export class ProductService {
     return products;
   }
 
+  /**
+   * helper method, convert a string into slug format
+   * @param text
+   */
   private slugify(text: string): string {
     return text.toString().toLowerCase()
       .replace(/\s+/g, '-')           // Replace spaces with -
