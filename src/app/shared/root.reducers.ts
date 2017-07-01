@@ -12,7 +12,7 @@ export interface State {
 }
 
 const reducers = {
-  search: fromProduct.reducer,
+  products: fromProduct.reducer,
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);

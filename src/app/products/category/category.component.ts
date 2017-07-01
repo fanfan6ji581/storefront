@@ -17,8 +17,10 @@ export class CategoryComponent implements OnInit {
   products: Product[];
 
   constructor(private store: Store<fromRoot.State>) {
+    // store.select(state => state.products.products).subscribe(n => this.products = n);
+
     this.products$ = store.select(fromRoot.getProductsProducts);
-    this.products$.subscribe(products => this.products = products);
+    // this.products$.subscribe(products => this.products = products);
   }
 
   ngOnInit() {

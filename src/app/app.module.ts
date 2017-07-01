@@ -36,8 +36,8 @@ import { reducer } from './shared/root.reducers';
     AppRoutingModule,
     NgbModule.forRoot(),
     StoreModule.provideStore(reducer),
-    EffectsModule.run(ProductEffects),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    EffectsModule.run(ProductEffects),
 
   ],
   providers: [
