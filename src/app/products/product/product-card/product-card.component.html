@@ -1,7 +1,7 @@
 <div class="card product-card text-center">
   <div class="product-card-img" [style.background-image]="'url(' + product.image + ')'">
     <a class="btn btn-primary" [routerLink]="['/product/' + product.slug]" (click)="onViewDetail()">VIEW DETAILS</a>
-    <a class="btn">ADD TO CART</a>
+    <a class="btn" (click)="onAddToCart()">ADD TO CART</a>
   </div>
   <div class="card-block">
     <h6 class="text-muted">{{product.brand}}</h6>

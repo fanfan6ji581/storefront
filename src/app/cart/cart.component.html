@@ -1,3 +1,35 @@
-<p>
-  cart works!
-</p>
+<div class="container">
+  <h1 class="my-3 text-center">Shopping Cart</h1>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>PRODUCT</th>
+          <th></th>
+          <th>QUANTITY</th>
+          <th>TOTAL</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cartItem of cartItems">
+          <td><img class="img-fluid" [src]="cartItem.product.image"></td>
+          <td>
+            <p>{{cartItem.product.brand}}</p>
+            <p>{{cartItem.product.title}}</p>
+          </td>
+          <td>
+            {{cartItem.quantity}}
+          </td>
+          <td>
+            {{cartItem.product.price * cartItem.quantity | currency:'USD':true}}
+          </td>
+          <td>
+            <a>Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

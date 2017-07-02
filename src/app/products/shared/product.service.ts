@@ -3,13 +3,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from '../../shared/services';
 import { Product } from './product.model';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ProductService {
-
-  private static MASTER = 0;
-  private static SITES = 1;
-  private static FAVORITE = 2;
 
   constructor(private api: ApiService) {
   }
@@ -29,6 +26,17 @@ export class ProductService {
       .catch((err, caught) => Observable.throw(err))
       .map(products => this.addData(products))
       .map((products: Product[]) => products.find(product => product.slug == slug));
+  }
+
+  /**
+   * similar API for get products by product Id array
+   * @param productIds
+   */
+  loadProductsByProudctIds(productIds: number[]): Observable<Product[]> {
+    return this.api.get('/products.json')
+      .catch((err, caught) => Observable.throw(err))
+      .map(products => this.addData(products))
+      .map((products: Product[]) => products.filter(product => _.includes(productIds, product.id)));
   }
 
   /**

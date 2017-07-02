@@ -23,7 +23,6 @@ export function reducer(state = initialState, action: productActions.Actions): S
             });
         }
         case productActions.SELECT_SUCCESS: {
-            debugger
             const product = action.payload;
             return Object.assign({}, state, {
                 loading: false,

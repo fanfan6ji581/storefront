@@ -22,6 +22,10 @@ const routes: Routes = [
       {
         path: 'product/:slug',
         component: ProductComponent
+      },
+      {
+        path: 'cart',
+        component: CartComponent
       }
     ]
   },

@@ -7,15 +7,18 @@ import { combineReducers } from '@ngrx/store';
 
 import * as fromCategory from '../products/category/shared/category.reducer';
 import * as fromProduct from '../products/product/shared/product.reducer';
+import * as fromCart from '../cart/shared/cart.reducer';
 
 export interface State {
   category: fromCategory.State;
   product: fromProduct.State;
+  cart: fromCart.State;
 }
 
 const reducers = {
   category: fromCategory.reducer,
   product: fromProduct.reducer,
+  cart: fromCart.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -35,3 +38,6 @@ export const getCategoryProducts = createSelector(getCategoryState, fromCategory
 
 export const getProductState = (state: State) => state.product;
 export const getProductSelect = createSelector(getProductState, fromProduct.getProduct);
+
+export const getCartState = (state: State) => state.cart;
+export const getCartCartItems = createSelector(getCartState, fromCart.getCartItems);

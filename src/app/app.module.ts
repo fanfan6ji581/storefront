@@ -13,13 +13,15 @@ import { CartComponent } from './cart/cart.component';
 import { ProductComponent } from './products/product/product.component';
 import { CategoryComponent } from './products/category/category.component';
 import { LayoutComponent } from './layout/layout.component';
+import { ProductCardComponent } from './products/product/product-card/product-card.component';
 
 import { ApiService } from './shared/services';
 import { ProductService } from './products/shared/product.service';
+import { CartService } from './cart/shared/cart.service';
 import { CategoryEffects } from './products/category/shared/category.effects';
-import { ProductCardComponent } from './products/product/product-card/product-card.component';
-import { reducer } from './shared/root.reducers';
+import { CartEffects } from './cart/shared/cart.effects';
 import { ProductEffects } from './products/product/shared/product.effects';
+import { reducer } from './shared/root.reducers';
 
 
 @NgModule({
@@ -40,10 +42,12 @@ import { ProductEffects } from './products/product/shared/product.effects';
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(CategoryEffects),
     EffectsModule.run(ProductEffects),
+    EffectsModule.run(CartEffects),
   ],
   providers: [
     ApiService,
-    ProductService
+    ProductService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })
