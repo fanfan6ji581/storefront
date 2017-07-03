@@ -1,70 +1,91 @@
 <div id="cart-page">
-  <h1 class="py-1 py-lg-4 text-center">Shopping Cart</h1>
+  <h1 class="py-1-5 pt-lg-4 pb-lg-0 text-center">Shopping Cart</h1>
+  <div class="container py-lg-4">
+    <div class="cart-content py-0-5 px-lg-2" *ngIf="!loading">
 
-  <div class="container">
-    <div class="cart-content p-2 p-lg-4 mx-1 mx-lg-0">
-      <div class="responsive-table">
+      <div class="responsive-table" *ngIf="cartItems.length > 0">
         <div class="row table-row hidden-md-down">
           <div class="col-lg-7"><span class="table-th">PRODUCT</span></div>
-          <div class="col"><span class="table-th">QUANTITY</span></div>
-          <div class="col"><span class="table-th">TOTAL</span></div>
-          <div class="col"><span class="table-th">ACTION</span></div>
+          <div class="col-lg-2 text-right"><span class="table-th">QUANTITY</span></div>
+          <div class="col text-right"><span class="table-th">TOTAL</span></div>
+          <div class="col text-right"><span class="table-th">ACTION</span></div>
         </div>
 
+        <!--shopping cart items-->
         <div class="row table-row" *ngFor="let cartItem of cartItems">
-          <div class="col-lg-7">
+          <div class="col-12 col-lg-7">
             <div class="row mb-2">
-              <div class="col-3 p-0">
-                <div class="cartitem-img" [style.background-image]="'url(' + cartItem.product.image + ')'"></div>
+              <div class="col-4">
+                <a [routerLink]="['/product/' + cartItem.product.slug]" title="{{cartItem.product.title}}">
+                  <div class="cartitem-img" [style.background-image]="'url(' + cartItem.product.image + ')'"></div>
+                </a>
               </div>
-              <div class="col">
-                <p>{{cartItem.product.brand}}</p>
-                <p>{{cartItem.product.title}}</p>
+              <div class="col text-uppercase">
+                <p class="text-muted mb-0-5">{{cartItem.product.brand}}</p>
+                <h6>{{cartItem.product.title}}</h6>
               </div>
             </div>
           </div>
-          <div class="col">
+          <div class="col-6 col-lg-2 text-left text-lg-right">
             <sf-quantity-picker [quantity]="cartItem.quantity" (change)="onQuantityChange(cartItem.product, $event)"></sf-quantity-picker>
           </div>
-          <div class="col">
-            {{cartItem.product.price * cartItem.quantity | currency:'CAD':true}}
+          <div class="col text-right mr--6 mr-lg-0">
+            {{cartItem.product.price * cartItem.quantity | currency:'USD':true}}
           </div>
-          <div class="col">
-            <a (click)="onDelete(cartItem.product)">Delete</a>
+          <div class="col text-right">
+            <a class="btn btn-link cartitem-cta text-muted" (click)="onDelete(cartItem.product)">
+              &times;
+            </a>
+          </div>
+        </div>
 
+        <!-- summary-->
+        <div class="row table-row">
+          <div class="col-lg-6 offset-lg-6">
+            <p class="text-muted">CART OVERVIEW</p>
+            <div class="row">
+              <div class="col">
+                <p class="text-muted">SUBTOTAL</p>
+              </div>
+              <div class="col text-right">
+                <span class="text-muted">{{totalPrice| currency:'USD':true}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="text-muted">TOTAL</p>
+              </div>
+              <div class="col text-right">
+                <span>{{totalPrice| currency:'USD':true}} CAD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- action-->
+        <div class="row table-row">
+          <div class="col-12 col-lg-6 text-center text-lg-left mb-2">
+            <a class="btn-underline d-block d-lg-inline-block" [routerLink]="['/category']">Continue Shopping</a>
+          </div>
+          <div class="col col-lg-6 text-center text-lg-right">
+            <a class="btn btn-lg btn-primary" tabindex="1">Checkout ({{totalPrice| currency:'USD':true}} CAD)</a>
           </div>
         </div>
       </div>
-    </div>
 
-    <!--<table class="table">
-      <thead>
-        <tr>
-          <th>PRODUCT</th>
-          <th></th>
-          <th>QUANTITY</th>
-          <th>TOTAL</th>
-          <th>ACTION</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cartItem of cartItems">
-          <td><img class="img-fluid" [src]="cartItem.product.image"></td>
-          <td>
-            <p>{{cartItem.product.brand}}</p>
-            <p>{{cartItem.product.title}}</p>
-          </td>
-          <td>
-            <sf-quantity-picker [quantity]="cartItem.quantity" (change)="onQuantityChange(cartItem.product, $event)"></sf-quantity-picker>
-          </td>
-          <td>
-            {{cartItem.product.price * cartItem.quantity | currency:'CAD':true}}
-          </td>
-          <td>
-            <a (click)="onDelete(cartItem.product)">Delete</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>-->
+      <!--Empty shopping cart-->
+      <div class="text-center my-4" *ngIf="cartItems.length == 0">
+        <h4 class="my-1">Empty Shopping Cart</h4>
+        <div class="text-center">
+          <a class="btn-underline" [routerLink]="['/category']">Begin Shopping</a>
+        </div>
+
+      </div>
+
+    </div>
+    <!--loading-->
+    <div class="text-center my-4" *ngIf="loading">
+      <div class="spinner"></div>
+    </div>
   </div>
 </div>

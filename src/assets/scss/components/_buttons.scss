@@ -1,3 +1,21 @@
 .btn-inverse {
-  @include button-variant($brand-inverse-color, $brand-inverse, $brand-inverse);
+    @include button-variant($brand-inverse-color, $brand-inverse, $brand-inverse);
+}
+
+.btn-underline {
+    font-weight: $font-weight-normal;
+    color: $brand-primary;
+    border-radius: 0;
+    padding: 0 0.125em 0.5em;
+    border-bottom: 1px solid $brand-primary;
+    text-transform: uppercase;
+    @include hover-focus {
+        color: $brand-primary;
+        text-decoration: none;
+    }
+    @include hover {
+        @include hover-focus {
+            color: lighten($brand-primary, 40%);
+        }
+    }
 }

@@ -4,10 +4,12 @@ import { CartItem } from './cart-item.model';
 import * as _ from 'lodash';
 
 export interface State {
+    loading: boolean;
     cartItems: CartItem[];
 };
 
 const initialState: State = {
+    loading: false,
     cartItems: []
 };
 
@@ -52,8 +54,14 @@ export function reducer(state = initialState, action: cartActions.Actions): Stat
 
             return Object.assign({}, state, { cartItems });
         }
+        case cartActions.LOAD: {
+            return Object.assign({}, state, {
+                loading: true
+            });
+        }
         case cartActions.LOAD_SUCCESS: {
             return Object.assign({}, state, {
+                loading: false,
                 cartItems: action.payload
             });
         } default: {
@@ -63,3 +71,4 @@ export function reducer(state = initialState, action: cartActions.Actions): Stat
 }
 
 export const getCartItems = (state: State) => state.cartItems;
+export const getLoading = (state: State) => state.loading;

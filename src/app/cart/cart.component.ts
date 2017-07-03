@@ -5,6 +5,7 @@ import * as fromRoot from '../shared/root.reducers';
 import * as cartActions from './shared/cart.actions';
 import { CartItem } from './shared/cart-item.model';
 import { Product } from '../products/shared/product.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'sf-cart',
@@ -15,10 +16,20 @@ export class CartComponent implements OnInit {
 
   cartItems: CartItem[];
   cartItems$: Observable<CartItem[]>;
+  loading: boolean;
 
   constructor(private store: Store<fromRoot.State>) {
     this.cartItems$ = store.select(fromRoot.getCartCartItems);
     this.cartItems$.subscribe(cartItems => this.cartItems = cartItems);
+    store.select(fromRoot.getCartLoading).subscribe(loading => this.loading = loading);
+  }
+
+  /**
+   * calculate totalPrice
+   */
+  get totalPrice(): number {
+    const prices = this.cartItems.map(cartItem => cartItem.product.price * cartItem.quantity);
+    return prices.reduce((sum, val) => sum + val, 0);
   }
 
   ngOnInit() {
