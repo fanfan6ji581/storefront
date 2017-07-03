@@ -1,31 +1,38 @@
 <div id="cart-page">
-  <h1 class="py-3 text-center">Shopping Cart</h1>
+  <h1 class="py-1 py-lg-4 text-center">Shopping Cart</h1>
 
-  <div class="container py-4 px-2">
-
-    <div class="responsive-table">
-      <div class="row table-row hidden-md-down">
-        <div class="col-lg-7"><span class="table-th">PRODUCT</span></div>
-        <div class="col"><span class="table-th">QUANTITY</span></div>
-        <div class="col"><span class="table-th">TOTAL</span></div>
-        <div class="col"><span class="table-th">ACTION</span></div>
-      </div>
-
-      <div class="row table-row" *ngFor="let cartItem of cartItems">
-        <div class="col-lg-7">
-          <img class="img-fluid" [src]="cartItem.product.image">
-          <p>{{cartItem.product.brand}}</p>
-          <p>{{cartItem.product.title}}</p>
+  <div class="container">
+    <div class="cart-content p-2 p-lg-4 mx-1 mx-lg-0">
+      <div class="responsive-table">
+        <div class="row table-row hidden-md-down">
+          <div class="col-lg-7"><span class="table-th">PRODUCT</span></div>
+          <div class="col"><span class="table-th">QUANTITY</span></div>
+          <div class="col"><span class="table-th">TOTAL</span></div>
+          <div class="col"><span class="table-th">ACTION</span></div>
         </div>
-        <div class="col">
-          <sf-quantity-picker [quantity]="cartItem.quantity" (change)="onQuantityChange(cartItem.product, $event)"></sf-quantity-picker>
-        </div>
-        <div class="col">
-          {{cartItem.product.price * cartItem.quantity | currency:'CAD':true}}
-        </div>
-        <div class="col">
-          <a (click)="onDelete(cartItem.product)">Delete</a>
 
+        <div class="row table-row" *ngFor="let cartItem of cartItems">
+          <div class="col-lg-7">
+            <div class="row mb-2">
+              <div class="col-3 p-0">
+                <div class="cartitem-img" [style.background-image]="'url(' + cartItem.product.image + ')'"></div>
+              </div>
+              <div class="col">
+                <p>{{cartItem.product.brand}}</p>
+                <p>{{cartItem.product.title}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <sf-quantity-picker [quantity]="cartItem.quantity" (change)="onQuantityChange(cartItem.product, $event)"></sf-quantity-picker>
+          </div>
+          <div class="col">
+            {{cartItem.product.price * cartItem.quantity | currency:'CAD':true}}
+          </div>
+          <div class="col">
+            <a (click)="onDelete(cartItem.product)">Delete</a>
+
+          </div>
         </div>
       </div>
     </div>

@@ -1,14 +1,19 @@
 #cart-page {
   background-color: #f6f6f6;
-  .container {
+  .cart-content {
     background-color: $body-bg;
     .table-row {
-      padding-bottom: 1em;
+      padding: 2em 0;
       border-bottom: 1px solid $gray-lighter;
       .table-th {
         text-transform: uppercase;
         color: $gray-light;
       }
     }
+  }
+  .cartitem-img {
+    @include aspect-ratio(16, 9);
+    background-size: cover;
+    background-position: center center;
   }
 }
