@@ -1,2 +1,23 @@
-#site-navbar {
+$logo-width: 6em;
+#header-navbar {
+  border-bottom: 1px solid $gray-lighter;
+  .navbar-brand {
+    max-width: $logo-width;
+  }
+  .navbar-nav {
+    flex-grow: 1;
+    .nav-item {
+      margin: 0 1em;
+      .nav-link {
+        color: $brand-primary;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+  }
+  .navbar-action {
+    display: flex;
+    max-width: $logo-width;
+    font-weight: bold;
+  }
 }

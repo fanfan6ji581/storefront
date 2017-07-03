@@ -22,7 +22,7 @@ export class CartEffects {
 
     @Effect({ dispatch: false })
     persistence$: Observable<any> = this.actions$
-        .ofType(cartActions.UPDATE, cartActions.DELETE)
+        .ofType(cartActions.UPDATE, cartActions.DELETE, cartActions.SET_VALUE)
         .switchMap(() => of(this.cartService.saveToStorage()));
 
     /**

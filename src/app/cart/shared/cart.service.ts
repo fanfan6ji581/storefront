@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { ProductService } from '../../products/shared/product.service';
 import { CartItem } from './cart-item.model';
 import * as fromRoot from '../../shared/root.reducers';
+import * as _ from 'lodash';
 
 @Injectable()
 export class CartService {
@@ -23,7 +24,7 @@ export class CartService {
      */
     saveToStorage() {
         // only keep the productId and quantity, ignore the product object
-        const items = this.cartItems.map(cartItem => cartItem.toStorageFormat());
+        const items = this.cartItems.map(cartItem => _.pick(cartItem, ['productId', 'quantity']));
         localStorage.setItem(CartService.KEY_CART_ITEMS, JSON.stringify(items));
     }
 

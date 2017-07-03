@@ -1,0 +1,29 @@
+.quantity-picker {
+  display: inline-block;
+  vertical-align: middle;
+  max-height: 4rem;
+  .qp-input {
+    input {
+      display: inline-block;
+      background-color: #eee;
+      outline: none;
+      border: none;
+      padding: 1.25rem 0.25rem 1.25rem 1.75rem;
+      width: 4rem;
+    }
+  }
+  .qp-actions {
+    margin-left: 2px;
+    a {
+      cursor: pointer;
+      display: block;
+      text-align: center;
+      background-color: #dadada;
+      padding: 0.225rem;
+      width: 2rem;
+      &:first-child {
+        margin-bottom: 2px;
+      }
+    }
+  }
+}

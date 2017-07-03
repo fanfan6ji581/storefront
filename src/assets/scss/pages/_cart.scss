@@ -1,0 +1,14 @@
+#cart-page {
+  background-color: #f6f6f6;
+  .container {
+    background-color: $body-bg;
+    .table-row {
+      padding-bottom: 1em;
+      border-bottom: 1px solid $gray-lighter;
+      .table-th {
+        text-transform: uppercase;
+        color: $gray-light;
+      }
+    }
+  }
+}

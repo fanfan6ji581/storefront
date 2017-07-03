@@ -1,21 +1,23 @@
 <div class="container">
-  <nav class="breadcrumb">
+
+  <nav class="breadcrumb my-2">
     <a class="breadcrumb-item" href="#">Home</a>
-    <a class="breadcrumb-item" href="#">Library</a>
-    <a class="breadcrumb-item" href="#">Data</a>
-    <span class="breadcrumb-item active">Bootstrap</span>
+    <a class="breadcrumb-item" href="#">PLATES</a>
+    <span class="breadcrumb-item active">{{product.title}}</span>
   </nav>
-  <div class="row text-center" *ngIf="product$ | async as product; else loadingProduct">
-    <div class="col-12 col-md-7">
+
+  <div class="row text-center mb-2" *ngIf="product$ | async as product; else loadingProduct">
+    <div class="col-12 col-lg-7 mb-2">
       <img class="img-fluid" [src]="product.image" [alt]="product.title">
     </div>
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-lg-5">
       <h6 class="text-muted">{{product.brand}}</h6>
       <h5 class="text-uppercase">{{product.title}}</h5>
-      <p class="text-muted card-text">{{product.price | currency:'USD':true}}</p>
+      <p class="text-muted card-text">{{product.price | currency:'CAD':true}}</p>
       <p>{{product.description}}</p>
       <hr>
-      <a class="btn btn-primary">ADD TO CART</a>
+      <sf-quantity-picker [quantity]="quantity" (change)="onQuantityChange($event)"></sf-quantity-picker>
+      <a class="btn btn-lg btn-primary ml-1" tabindex="1">ADD TO CART</a>
     </div>
   </div>
   <ng-template #loadingProduct>

@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../shared/root.reducers';
 import * as cartActions from './shared/cart.actions';
 import { CartItem } from './shared/cart-item.model';
+import { Product } from '../products/shared/product.model';
 
 @Component({
   selector: 'sf-cart',
@@ -15,13 +16,9 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[];
   cartItems$: Observable<CartItem[]>;
 
-  constructor(
-    private store: Store<fromRoot.State>
-  ) {
+  constructor(private store: Store<fromRoot.State>) {
     this.cartItems$ = store.select(fromRoot.getCartCartItems);
-    this.cartItems$.subscribe(cartItems => {
-      this.cartItems = cartItems
-    });
+    this.cartItems$.subscribe(cartItems => this.cartItems = cartItems);
   }
 
   ngOnInit() {
@@ -31,4 +28,11 @@ export class CartComponent implements OnInit {
     }
   }
 
+  onQuantityChange(product: Product, quantity: number) {
+    this.store.dispatch(new cartActions.SetValueAction(new CartItem(product, quantity)));
+  }
+
+  onDelete(product: Product) {
+    this.store.dispatch(new cartActions.DeleteAction(product.id));
+  }
 }

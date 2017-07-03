@@ -13,41 +13,44 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: cartActions.Actions): State {
     switch (action.type) {
-        case cartActions.UPDATE: {
-            let newCartItems = [...state.cartItems];
+        case cartActions.UPDATE:
+        case cartActions.SET_VALUE: {
+            let cartItems = [...state.cartItems];
 
             const cartItem = action.payload;
             const index = _.findIndex(state.cartItems, { productId: cartItem.productId });
 
-            // first time add to cart
             if (index == -1) {
-                newCartItems = [...state.cartItems, cartItem];
+                // if it's first time, append to cart
+                cartItems = [...state.cartItems, cartItem];
             } else {
-                // update the quantity of exisitng cart Item
-                newCartItems[index] = new CartItem(cartItem.product, newCartItems[index].quantity + cartItem.quantity)
-                // delete from cart, if invalid quantity
-                if (newCartItems[index].quantity <= 0) {
-                    _.pullAt(newCartItems, [index]);
+                // update the quantity based on different action
+                // if UPDATE: use the param to calculate the quantity
+                // if SET_VALUE: use the param quantity directly
+                const quantity = action.type == cartActions.UPDATE ?
+                    cartItems[index].quantity + cartItem.quantity
+                    : cartItem.quantity;
+                cartItems[index] = new CartItem(cartItem.product, quantity)
+
+                // validation if quantity is invalid, delete it directly
+                if (cartItems[index].quantity <= 0) {
+                    _.pullAt(cartItems, [index]);
                 }
             }
 
-            return Object.assign({}, state, {
-                cartItems: newCartItems
-            });
+            return Object.assign({}, state, { cartItems });
         }
         case cartActions.DELETE: {
             const productId = action.payload;
-            let newCartItems = [...state.cartItems];
+            let cartItems = [...state.cartItems];
 
             // remove cart Item if can find one
             const index = _.findIndex(state.cartItems, { productId });
-            if (index == -1) {
-                _.pullAt(newCartItems, [index]);
+            if (index != -1) {
+                _.pullAt(cartItems, [index]);
             }
 
-            return Object.assign({}, state, {
-                cartItems: newCartItems
-            });
+            return Object.assign({}, state, { cartItems });
         }
         case cartActions.LOAD_SUCCESS: {
             return Object.assign({}, state, {

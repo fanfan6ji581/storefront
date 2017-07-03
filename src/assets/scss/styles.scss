@@ -3,16 +3,25 @@
 // ===========================================
 @import "variables";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
-
+@import "vendor/bootstrap-override";
+// ===========================================
+// MIXINS
+// ===========================================
+@import "mixins/aspect-ratio";
+@import "mixins/vertial-align";
+@import "mixins/position";
 // ===========================================
 // COMPONENTS
 // ===========================================
 @import "components/navbar";
+@import "components/breadcrumb";
 @import "components/text";
 @import "components/hero-section";
 @import "components/product-card";
-
+@import "components/buttons";
+@import "components/quantity-picker";
 // ===========================================
 // PAGES
 // ===========================================
 @import "pages/category";
+@import "pages/cart";

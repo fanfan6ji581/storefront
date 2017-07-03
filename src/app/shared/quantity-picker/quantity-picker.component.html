@@ -1,0 +1,11 @@
+<div class="quantity-picker">
+  <div class="d-flex">
+    <div class="qp-input">
+      <input type="number" [(ngModel)]="quantity" min="1" (change)="onChange($event)">
+    </div>
+    <div class="qp-actions">
+      <a (click)="increment()">+</a>
+      <a (click)="decrement()">-</a>
+    </div>
+  </div>
+</div>

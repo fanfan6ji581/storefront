@@ -1,8 +1,36 @@
-<div class="container">
-  <h1 class="my-3 text-center">Shopping Cart</h1>
+<div id="cart-page">
+  <h1 class="py-3 text-center">Shopping Cart</h1>
 
-  <div>
-    <table class="table">
+  <div class="container py-4 px-2">
+
+    <div class="responsive-table">
+      <div class="row table-row hidden-md-down">
+        <div class="col-lg-7"><span class="table-th">PRODUCT</span></div>
+        <div class="col"><span class="table-th">QUANTITY</span></div>
+        <div class="col"><span class="table-th">TOTAL</span></div>
+        <div class="col"><span class="table-th">ACTION</span></div>
+      </div>
+
+      <div class="row table-row" *ngFor="let cartItem of cartItems">
+        <div class="col-lg-7">
+          <img class="img-fluid" [src]="cartItem.product.image">
+          <p>{{cartItem.product.brand}}</p>
+          <p>{{cartItem.product.title}}</p>
+        </div>
+        <div class="col">
+          <sf-quantity-picker [quantity]="cartItem.quantity" (change)="onQuantityChange(cartItem.product, $event)"></sf-quantity-picker>
+        </div>
+        <div class="col">
+          {{cartItem.product.price * cartItem.quantity | currency:'CAD':true}}
+        </div>
+        <div class="col">
+          <a (click)="onDelete(cartItem.product)">Delete</a>
+
+        </div>
+      </div>
+    </div>
+
+    <!--<table class="table">
       <thead>
         <tr>
           <th>PRODUCT</th>
@@ -20,16 +48,16 @@
             <p>{{cartItem.product.title}}</p>
           </td>
           <td>
-            {{cartItem.quantity}}
+            <sf-quantity-picker [quantity]="cartItem.quantity" (change)="onQuantityChange(cartItem.product, $event)"></sf-quantity-picker>
           </td>
           <td>
-            {{cartItem.product.price * cartItem.quantity | currency:'USD':true}}
+            {{cartItem.product.price * cartItem.quantity | currency:'CAD':true}}
           </td>
           <td>
-            <a>Delete</a>
+            <a (click)="onDelete(cartItem.product)">Delete</a>
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>-->
   </div>
 </div>

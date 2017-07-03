@@ -10,14 +10,4 @@ export class CartItem {
         this.product = product;
         this.quantity = quantity;
     }
-
-    /**
-     * when save to local storage, only keep the id and quantity
-     */
-    toStorageFormat() {
-        return {
-            productId: this.productId,
-            quantity: this.quantity
-        }
-    }
 }

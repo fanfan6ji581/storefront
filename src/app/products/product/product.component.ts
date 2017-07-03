@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
 
   product$: Observable<Product>;
   product: Product;
+  quantity: number = 1;
 
   constructor(private route: ActivatedRoute, private store: Store<fromRoot.State>) {
     this.product$ = store.select(fromRoot.getProductSelect);
@@ -28,6 +29,12 @@ export class ProductComponent implements OnInit {
         // get product by slug
         this.store.dispatch(new product.SelectAction(params['slug']));
       });
+    }
+  }
+
+  onQuantityChange(quantity: number) {
+    if (typeof quantity === 'number') {
+      this.quantity = quantity;
     }
   }
 

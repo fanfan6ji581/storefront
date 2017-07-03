@@ -7,6 +7,8 @@ $btn-primary-border:    #1d1d20;;
 $brand-inverse:         #393935;
 $enable-shadows:        false;
 $btn-border-radius:     0;
+$btn-border-radius-lg:  0;
+$btn-border-radius-sm:  0;
 $navbar-border-radius:  0;
 
 $spacers: (
@@ -62,7 +64,7 @@ $spacers: (
 );
 
 // cusomize variables
-$shadow-color:    rgba(182, 182, 182, 0.75);
+$brand-inverse-color :#fff;
 
 $break-point-xs:  nth(nth($grid-breakpoints, 1), 2);
 $break-point-sm:  nth(nth($grid-breakpoints, 2), 2);

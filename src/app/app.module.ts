@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -22,6 +23,7 @@ import { CategoryEffects } from './products/category/shared/category.effects';
 import { CartEffects } from './cart/shared/cart.effects';
 import { ProductEffects } from './products/product/shared/product.effects';
 import { reducer } from './shared/root.reducers';
+import { QuantityPickerComponent } from './shared/quantity-picker/quantity-picker.component';
 
 
 @NgModule({
@@ -31,11 +33,13 @@ import { reducer } from './shared/root.reducers';
     ProductComponent,
     CategoryComponent,
     LayoutComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    QuantityPickerComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     AppRoutingModule,
     NgbModule.forRoot(),
     StoreModule.provideStore(reducer),

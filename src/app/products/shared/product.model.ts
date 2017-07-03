@@ -1,5 +1,4 @@
 export class Product {
-    static counter = 0;
     id?: number;
     title: string;
     brand: string;

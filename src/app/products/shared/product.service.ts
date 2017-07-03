@@ -48,8 +48,8 @@ export class ProductService {
     // use this dict to avoid duplicate product slug
     const productSlugs = [];
 
-    products.forEach(product => {
-      product.id = ++Product.counter;
+    products.forEach((product, index) => {
+      product.id = index + 1;
       product.image = `/assets/images/${product.image}`;
       product.slug = this.slugify(product.title);
       // if such title exists, append the id
