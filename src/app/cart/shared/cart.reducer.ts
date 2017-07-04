@@ -44,12 +44,12 @@ export function reducer(state = initialState, action: cartActions.Actions): Stat
         }
         case cartActions.DELETE: {
             const productId = action.payload;
-            let cartItems = [...state.cartItems];
+            const cartItems = [...state.cartItems];
 
             // remove cart Item if can find one
             const index = _.findIndex(state.cartItems, { productId });
             if (index !== -1) {
-                cartItems = _.pullAt(cartItems, [index]);
+                _.pullAt(cartItems, [index]);
             }
 
             return Object.assign({}, state, { cartItems });

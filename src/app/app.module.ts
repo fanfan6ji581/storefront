@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -27,6 +26,7 @@ import { QuantityPickerComponent } from './shared/quantity-picker/quantity-picke
 import { SfCurrencyPipe } from './shared/sf-currency.pipe';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { CartLiteComponent } from './cart/cart-lite/cart-lite.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 
 @NgModule({
@@ -40,14 +40,14 @@ import { CartLiteComponent } from './cart/cart-lite/cart-lite.component';
     QuantityPickerComponent,
     SfCurrencyPipe,
     SpinnerComponent,
-    CartLiteComponent
+    CartLiteComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(CategoryEffects),

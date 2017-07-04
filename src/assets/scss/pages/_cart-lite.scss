@@ -1,0 +1,12 @@
+.cart-lite {
+  .product-cover-img {
+    @include aspect-ratio(1, 1);
+  }
+  .row {
+    margin-bottom: 1em;
+  }
+  h6,
+  p {
+    margin-bottom: 0.25em;
+  }
+}

@@ -1,0 +1,83 @@
+/* Menu */
+
+#menu-wrap {
+    @include fixed-full-size();
+    z-index: $zindex-modal;
+    width: 20em;
+    max-width: 100vw;
+    height: 100%;
+    background: #373a47;
+    padding: 0.75em 1.5em 0;
+    font-size: 1.15em;
+    -webkit-transform: translate3d(-20em, 0, 0);
+    transform: translate3d(-20em, 0, 0);
+    -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    transition: -webkit-transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    .menu {
+        height: 100%;
+        .navitem-list {
+            list-style-type: none;
+            padding: 0;
+            .nav-item {
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+                -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+                transition: -webkit-transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+                &:nth-child(2) {
+                    -webkit-transition-delay: 0.05s;
+                    transition-delay: 0.05s;
+                }
+                &:nth-child(3) {
+                    -webkit-transition-delay: 0.1s;
+                    transition-delay: 0.1s;
+                }
+            }
+        }
+    }
+    /* Close Button */
+    .menu-close {
+        font-size: 1.5em;
+        text-align: right;
+    }
+    .cta {
+        color: $white!important;
+        @include hover-focus {
+            color: darken($white, 30%) !important;
+        }
+        &.active {
+            color: darken($white, 30%) !important;
+        }
+    }
+}
+
+
+/* Shown menu */
+
+.show-menu {
+    #menu-wrap {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-transition: -webkit-transform 0.8s;
+        transition: transform 0.8s;
+        -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        .menu {
+            .navitem-list {
+                .nav-item {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+        }
+    }
+    .menu-overlay {
+        @include fixed-full-size();
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: $zindex-fixed;
+    }
+}
+
+.menu-overlay {
+    -webkit-transition: background-color 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    transition: background-color 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+}

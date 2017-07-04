@@ -1,23 +1,41 @@
 $logo-width: 6em;
 #header-navbar {
-  border-bottom: 1px solid $gray-lighter;
-  .navbar-brand {
-    max-width: $logo-width;
-  }
-  .navbar-nav {
-    flex-grow: 1;
-    .nav-item {
-      margin: 0 1em;
-      .nav-link {
+    color: $brand-primary;
+    border-bottom: 1px solid $gray-lighter;
+    .navbar-brand {
+        max-width: $logo-width;
+        img {
+            height: 3em;
+        }
+    }
+    .navbar-nav {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        .nav-item {
+            margin: 0 1.5em;
+        }
+    }
+    .cta {
+        cursor: pointer;
         color: $brand-primary;
         text-transform: uppercase;
         font-weight: bold;
-      }
+        @include hover-focus {
+            color: lighten($brand-primary, 30%) !important;
+        }
+
+        &.active {
+            pointer-events: none;
+            color: lighten($brand-primary, 30%) !important;
+        }
     }
-  }
-  .navbar-action {
-    display: flex;
-    max-width: $logo-width;
-    font-weight: bold;
-  }
+    .navbar-action {
+        display: flex;
+        justify-content: flex-end;
+        padding-left: 0;
+    }
+    .cta i {
+        font-size: 1.5em;
+    }
 }

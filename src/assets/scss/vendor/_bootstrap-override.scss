@@ -9,6 +9,13 @@
   }
 }
 
+.btn-outline-primary {
+  &:focus {
+    background: $white;
+    color: $brand-primary;
+  }
+}
+
 .btn-primary {
   @include hover-focus {
     background-color: lighten($brand-primary, 15%);
