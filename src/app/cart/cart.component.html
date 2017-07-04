@@ -1,7 +1,7 @@
 <div id="cart-page">
   <h1 class="py-1-5 pt-lg-4 pb-lg-0 text-center">Shopping Cart</h1>
   <div class="container py-lg-4">
-    <div class="cart-content py-0-5 px-lg-2" *ngIf="!loading">
+    <div class="cart-content py-0-5 px-lg-2" *ngIf="!(loading$|async)">
 
       <div class="responsive-table" *ngIf="cartItems.length > 0">
         <div class="row table-row hidden-md-down">
@@ -15,12 +15,12 @@
         <div class="row table-row" *ngFor="let cartItem of cartItems">
           <div class="col-12 col-lg-7">
             <div class="row mb-2">
-              <div class="col-4">
+              <div class="col-5 col-lg-4">
                 <a [routerLink]="['/product/' + cartItem.product.slug]" title="{{cartItem.product.title}}">
-                  <div class="cartitem-img" [style.background-image]="'url(' + cartItem.product.image + ')'"></div>
+                  <div class="product-cover-img" [style.background-image]="'url(' + cartItem.product.image + ')'"></div>
                 </a>
               </div>
-              <div class="col text-uppercase">
+              <div class="col text-uppercase pl-0">
                 <p class="text-muted mb-0-5">{{cartItem.product.brand}}</p>
                 <h6>{{cartItem.product.title}}</h6>
               </div>
@@ -30,7 +30,7 @@
             <sf-quantity-picker [quantity]="cartItem.quantity" (change)="onQuantityChange(cartItem.product, $event)"></sf-quantity-picker>
           </div>
           <div class="col text-right mr--6 mr-lg-0">
-            {{cartItem.product.price * cartItem.quantity | currency:'USD':true}}
+            {{cartItem.product.price * cartItem.quantity | sfCurrency}}
           </div>
           <div class="col text-right">
             <a class="btn btn-link cartitem-cta text-muted" (click)="onDelete(cartItem.product)">
@@ -48,7 +48,7 @@
                 <p class="text-muted">SUBTOTAL</p>
               </div>
               <div class="col text-right">
-                <span class="text-muted">{{totalPrice| currency:'USD':true}}</span>
+                <span class="text-muted">{{totalPrice| sfCurrency}}</span>
               </div>
             </div>
             <div class="row">
@@ -56,7 +56,7 @@
                 <p class="text-muted">TOTAL</p>
               </div>
               <div class="col text-right">
-                <span>{{totalPrice| currency:'USD':true}} CAD</span>
+                <span>{{totalPrice| sfCurrency:'CAD'}}</span>
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@
             <a class="btn-underline d-block d-lg-inline-block" [routerLink]="['/category']">Continue Shopping</a>
           </div>
           <div class="col col-lg-6 text-center text-lg-right">
-            <a class="btn btn-lg btn-primary" tabindex="1">Checkout ({{totalPrice| currency:'USD':true}} CAD)</a>
+            <a class="btn btn-lg btn-primary" tabindex="1">Checkout ({{totalPrice| sfCurrency}})</a>
           </div>
         </div>
       </div>
@@ -77,15 +77,13 @@
       <div class="text-center my-4" *ngIf="cartItems.length == 0">
         <h4 class="my-1">Empty Shopping Cart</h4>
         <div class="text-center">
-          <a class="btn-underline" [routerLink]="['/category']">Begin Shopping</a>
+          <a class="btn-underline" [routerLink]="['/category']">Start Shopping</a>
         </div>
 
       </div>
 
     </div>
     <!--loading-->
-    <div class="text-center my-4" *ngIf="loading">
-      <div class="spinner"></div>
-    </div>
+    <sf-spinner *ngIf="(loading$|async)"></sf-spinner>
   </div>
 </div>

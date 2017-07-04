@@ -32,12 +32,15 @@ export function reducer(state: any, action: any) {
   }
 }
 
-
 export const getCategoryState = (state: State) => state.category;
 export const getCategoryProducts = createSelector(getCategoryState, fromCategory.getProducts);
+export const getCategoryLoaded = createSelector(getCategoryState, fromCategory.getLoaded);
+export const getCategoryLoading = createSelector(getCategoryState, fromCategory.getLoading);
 
 export const getProductState = (state: State) => state.product;
 export const getProductSelect = createSelector(getProductState, fromProduct.getProduct);
+export const getProductLoaded = createSelector(getProductState, fromProduct.getLoaded);
+export const getProductLoading = createSelector(getProductState, fromProduct.getLoading);
 
 export const getCartState = (state: State) => state.cart;
 export const getCartCartItems = createSelector(getCartState, fromCart.getCartItems);

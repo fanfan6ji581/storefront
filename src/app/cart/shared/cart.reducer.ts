@@ -22,14 +22,14 @@ export function reducer(state = initialState, action: cartActions.Actions): Stat
             const cartItem = action.payload;
             const index = _.findIndex(state.cartItems, { productId: cartItem.productId });
 
-            if (index == -1) {
+            if (index === -1) {
                 // if it's first time, append to cart
                 cartItems = [...state.cartItems, cartItem];
             } else {
                 // update the quantity based on different action
                 // if UPDATE: use the param to calculate the quantity
                 // if SET_VALUE: use the param quantity directly
-                const quantity = action.type == cartActions.UPDATE ?
+                const quantity = action.type === cartActions.UPDATE ?
                     cartItems[index].quantity + cartItem.quantity
                     : cartItem.quantity;
                 cartItems[index] = new CartItem(cartItem.product, quantity)
@@ -48,8 +48,8 @@ export function reducer(state = initialState, action: cartActions.Actions): Stat
 
             // remove cart Item if can find one
             const index = _.findIndex(state.cartItems, { productId });
-            if (index != -1) {
-                _.pullAt(cartItems, [index]);
+            if (index !== -1) {
+                cartItems = _.pullAt(cartItems, [index]);
             }
 
             return Object.assign({}, state, { cartItems });

@@ -24,6 +24,9 @@ import { CartEffects } from './cart/shared/cart.effects';
 import { ProductEffects } from './products/product/shared/product.effects';
 import { reducer } from './shared/root.reducers';
 import { QuantityPickerComponent } from './shared/quantity-picker/quantity-picker.component';
+import { SfCurrencyPipe } from './shared/sf-currency.pipe';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { CartLiteComponent } from './cart/cart-lite/cart-lite.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { QuantityPickerComponent } from './shared/quantity-picker/quantity-picke
     CategoryComponent,
     LayoutComponent,
     ProductCardComponent,
-    QuantityPickerComponent
+    QuantityPickerComponent,
+    SfCurrencyPipe,
+    SpinnerComponent,
+    CartLiteComponent
   ],
   imports: [
     BrowserModule,

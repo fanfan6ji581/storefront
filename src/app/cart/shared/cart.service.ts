@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class CartService {
-    private static KEY_CART_ITEMS = "cartItems";
+    private static KEY_CART_ITEMS = 'cartItems';
 
     // keep track of the current cartItems
     cartItems: CartItem[];

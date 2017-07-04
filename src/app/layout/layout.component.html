@@ -11,9 +11,18 @@
       <a class="nav-link">More</a>
     </li>
   </ul>
+
   <div class="navbar-action">
-    <span>My Cart</span>
-    <i class="fa fa-caret-down" aria-hidden="true"></i>
+    <div class="checkout" [ngClass]="{'checkout--active': isOpen}" (click)="isOpen = !isOpen">
+      <a class="checkout__button" href="#">
+        My Cart
+      </a>
+      <div class="checkout__order">
+        <div class="checkout__order-inner">
+          <sf-cart-lite></sf-cart-lite>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
 

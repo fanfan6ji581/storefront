@@ -37,3 +37,5 @@ export function reducer(state = initialState, action: productActions.Actions): S
 }
 
 export const getProduct = (state: State) => state.product;
+export const getLoaded = (state: State) => state.loaded;
+export const getLoading = (state: State) => state.loading;

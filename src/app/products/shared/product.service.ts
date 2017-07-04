@@ -25,7 +25,7 @@ export class ProductService {
     return this.api.get('/products.json')
       .catch((err, caught) => Observable.throw(err))
       .map(products => this.addData(products))
-      .map((products: Product[]) => products.find(product => product.slug == slug));
+      .map((products: Product[]) => products.find(product => product.slug === slug));
   }
 
   /**

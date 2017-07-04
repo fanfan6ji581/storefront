@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-10 offset-1 col-lg-8 offset-lg-2 py-2 py-md-6 px-1 px-md-2 bg-inverse text-white">
-        <h2 class="hero-section-title mb-1-5 mb-md-3">Plates</h2>
+        <h1 class="hero-section-title mb-1-5 mb-md-2">Plates</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis justo id consequat pretium. Pellentesque habitant
           morbi tristique senectus et netus et fames ac egestas.</p>
       </div>
@@ -10,9 +10,11 @@
   </div>
 </section>
 <div class="container my-2">
-  <div class="row">
+  <div class="row" *ngIf="!(loading$|async)">
     <div class="col-12 col-md-6 col-xl-4 my-1" *ngFor="let product of products$ | async">
       <sf-product-card [product]="product"></sf-product-card>
     </div>
   </div>
+
+  <sf-spinner *ngIf="(loading$|async)"></sf-spinner>
 </div>

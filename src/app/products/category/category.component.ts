@@ -14,9 +14,11 @@ import { Product } from '../shared/product.model';
 export class CategoryComponent implements OnInit {
 
   products$: Observable<Product[]>;
+  loading$: Observable<Boolean>;
 
   constructor(private store: Store<fromRoot.State>) {
     this.products$ = store.select(fromRoot.getCategoryProducts);
+    this.loading$ = store.select(fromRoot.getCategoryLoading);
   }
 
   ngOnInit() {

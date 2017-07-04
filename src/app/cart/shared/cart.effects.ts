@@ -37,8 +37,8 @@ export class CartEffects {
             .mergeMap(
             (cartItems) => this.productService.loadProductsByProudctIds(cartItems.map(cartItem => cartItem.productId))
             , (cartItems: CartItem[], products: Product[]) => {
-                cartItems.forEach(cartItem => cartItem.product = products.find(product => product.id == cartItem.productId));
-                return new cartActions.loadSuccessAction(cartItems);
+                cartItems.forEach(cartItem => cartItem.product = products.find(product => product.id === cartItem.productId));
+                return new cartActions.LoadSuccessAction(cartItems);
             }));
 
     constructor(private actions$: Actions,

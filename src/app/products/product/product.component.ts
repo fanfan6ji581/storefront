@@ -15,11 +15,13 @@ export class ProductComponent implements OnInit {
 
   product$: Observable<Product>;
   product: Product;
-  quantity: number = 1;
+  loading$: Observable<Boolean>;
+  quantity = 1;
 
   constructor(private route: ActivatedRoute, private store: Store<fromRoot.State>) {
     this.product$ = store.select(fromRoot.getProductSelect);
     this.product$.subscribe(p => this.product = p);
+    this.loading$ = store.select(fromRoot.getProductLoading);
   }
 
   ngOnInit() {

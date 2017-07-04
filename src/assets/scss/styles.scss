@@ -17,12 +17,14 @@
 @import "components/navbar";
 @import "components/breadcrumb";
 @import "components/text";
-@import "components/hero-section";
-@import "components/product-card";
 @import "components/buttons";
-@import "components/quantity-picker";
 // ===========================================
 // PAGES
 // ===========================================
 @import "pages/category";
 @import "pages/cart";
+@import "pages/cart-lite";
+@import "pages/cart-popup";
+@import "pages/hero-section";
+@import "pages/product";
+@import "pages/quantity-picker";

@@ -30,12 +30,12 @@ export class SetValueAction implements Action {
     constructor(public payload: CartItem) { }
 }
 
-export class loadAction implements Action {
+export class LoadAction implements Action {
     readonly type = LOAD;
     payload;
 }
 
-export class loadSuccessAction implements Action {
+export class LoadSuccessAction implements Action {
     readonly type = LOAD_SUCCESS;
     constructor(public payload: CartItem[]) { }
 }
@@ -44,5 +44,5 @@ export type Actions
     = UpdateAction
     | DeleteAction
     | SetValueAction
-    | loadAction
-    | loadSuccessAction;
+    | LoadAction
+    | LoadSuccessAction;

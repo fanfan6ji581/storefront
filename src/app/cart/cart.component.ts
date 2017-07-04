@@ -10,18 +10,17 @@ import * as _ from 'lodash';
 @Component({
   selector: 'sf-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
 
   cartItems: CartItem[];
   cartItems$: Observable<CartItem[]>;
-  loading: boolean;
+  loading$: Observable<Boolean>;
 
   constructor(private store: Store<fromRoot.State>) {
     this.cartItems$ = store.select(fromRoot.getCartCartItems);
     this.cartItems$.subscribe(cartItems => this.cartItems = cartItems);
-    store.select(fromRoot.getCartLoading).subscribe(loading => this.loading = loading);
+    this.loading$ = store.select(fromRoot.getCartLoading);
   }
 
   /**
@@ -35,7 +34,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     // try load from localstoarge
     if (!this.cartItems.length) {
-      this.store.dispatch(new cartActions.loadAction());
+      this.store.dispatch(new cartActions.LoadAction());
     }
   }
 
