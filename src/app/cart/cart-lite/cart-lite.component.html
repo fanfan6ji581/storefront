@@ -1,0 +1,58 @@
+<div class="cart-lite">
+  <div class="p-1">
+    <div *ngIf="!(loading$|async)">
+
+      <div *ngIf="cartItems.length > 0">
+        <!--shopping cart items-->
+        <div class="row" *ngFor="let cartItem of cartItems">
+          <div class="col-3">
+            <div class="product-cover-img" [style.background-image]="'url(' + cartItem.product.image + ')'"></div>
+          </div>
+          <div class="col pl-0">
+            <h6><b>{{cartItem.product.title}}</b> <span class="text-muted">&times; {{cartItem.quantity}}</span></h6>
+            <p class="text-muted">{{cartItem.product.brand}}</p>
+            <p>{{cartItem.product.price * cartItem.quantity | sfCurrency}}</p>
+          </div>
+          <div class="col-2 text-right">
+            <a class="btn btn-link cartitem-cta text-muted" (click)="onDelete(cartItem.product)">
+              &times;
+            </a>
+          </div>
+        </div>
+
+        <!-- summary-->
+        <hr>
+        <div class="row">
+          <div class="col">
+            <p class="text-muted">TOTAL</p>
+          </div>
+          <div class="col text-right">
+            <span class="text-muted">{{totalPrice| sfCurrency}}</span>
+          </div>
+        </div>
+
+        <!-- action-->
+        <div class="row">
+          <div class="col pr-sm-0-5 mb-0-5">
+            <a class="btn btn-lg btn-block btn-outline-primary" [routerLink]="['/cart']">View Cart</a>
+          </div>
+          <div class="col pl-sm-0-5">
+            <a class="btn btn-lg btn-block btn-primary" tabindex="1">Checkout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Empty shopping cart-->
+    <div class="text-center mb-4" *ngIf="cartItems.length == 0">
+      <h4 class="my-1">Empty Shopping Cart</h4>
+      <div class="text-center">
+        <a class="btn-underline" [routerLink]="['/category']">Start Shopping</a>
+      </div>
+
+    </div>
+
+  </div>
+  <!--loading-->
+  <sf-spinner *ngIf="(loading$|async)"></sf-spinner>
+</div>

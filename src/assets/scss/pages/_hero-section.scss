@@ -1,0 +1,11 @@
+.hero-section {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  .hero-section-title {
+    display: inline-block;
+    padding: 0.5em 0.25em;
+    border-bottom: 1px solid $white;
+  }
+}

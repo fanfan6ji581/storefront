@@ -1,0 +1,68 @@
+<nav class="container-fluid" [ngClass]="{'show-menu': isMenuShow}" id="header-navbar">
+  <div class="row align-items-center">
+    <!--mobile side menu toggle-->
+    <div class="col-3 hidden-lg-up">
+      <a class="cta" tabindex="1" (click)="toggleMenu()"><i class="fa fa-bars" aria-hidden="true"></i></a>
+    </div>
+
+    <!--mobile side menu-->
+    <div id="menu-wrap">
+      <div class="menu">
+        <div class="menu-close" (click)="toggleMenu()">
+          <a class="cta">&times;</a>
+        </div>
+        <ul class="navitem-list">
+          <li class="nav-item">
+            <a class="nav-link cta" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/category']"
+              (click)="toggleMenu()">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link cta" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/cart']" (click)="toggleMenu()">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link cta" (click)="toggleMenu()">More</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu-overlay" (click)="toggleMenu()"></div>
+
+    <div class="col col-lg-2 text-center text-lg-left">
+      <a class="navbar-brand" [routerLink]="['/']"><img src="assets/images/logo.png"></a>
+    </div>
+
+    <ul class="col navbar-nav flex-row hidden-md-down">
+      <li class="nav-item">
+        <a class="nav-link cta" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/category']">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link cta" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/cart']">Cart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link cta">More</a>
+      </li>
+    </ul>
+
+    <div class="col-3 col-lg-2 navbar-action">
+      <div class="header-cart" [ngClass]="{'active': isCartPopupShow}">
+        <div class="cart-overlay" (click)="toggleCartPopup()"></div>
+        <div class="cart-button">
+          <a class="cta" (click)="toggleCartPopup()">
+            <span class="hidden-md-down">My Cart</span>
+            <span class="hidden-lg-up"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
+            <span *ngIf="(cartItems$|async)?.length">({{(cartItems$|async)?.length}})</span>
+          </a>
+        </div>
+        <div class="cart-popup">
+          <div class="cart-popup-inner">
+            <hr>
+            <sf-cart-lite></sf-cart-lite>
+          </div>
+        </div>
+        <div class="cart-close" (click)="toggleCartPopup()">
+          <a class="cta">&times;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

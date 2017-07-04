@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../shared/root.reducers';
 import * as product from './shared/product.actions';
 import { Product } from '../shared/product.model';
+import * as cartActions from '../../cart/shared/cart.actions';
+import { CartItem } from '../../cart/shared/cart-item.model';
 
 @Component({
   selector: 'sf-product',
@@ -38,6 +40,10 @@ export class ProductComponent implements OnInit {
     if (typeof quantity === 'number') {
       this.quantity = quantity;
     }
+  }
+
+  onAddToCart() {
+    this.store.dispatch(new cartActions.AddAction(new CartItem(this.product, this.quantity)));
   }
 
 }

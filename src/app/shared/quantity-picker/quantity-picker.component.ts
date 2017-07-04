@@ -3,7 +3,6 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angu
 @Component({
   selector: 'sf-quantity-picker',
   templateUrl: './quantity-picker.component.html',
-  styleUrls: ['./quantity-picker.component.scss']
 })
 export class QuantityPickerComponent implements OnInit {
   @Output() change: EventEmitter<number> = new EventEmitter<number>();

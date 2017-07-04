@@ -8,7 +8,7 @@ export interface State {
     product: Product;
 };
 
-const initialState: State = {
+export const initialState: State = {
     loaded: false,
     loading: false,
     product: null,

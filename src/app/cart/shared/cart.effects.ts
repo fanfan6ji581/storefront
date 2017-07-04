@@ -16,13 +16,17 @@ import { Product } from '../../products/shared/product.model';
 import { ProductService } from '../../products/shared/product.service';
 import { CartItem } from './cart-item.model';
 import { CartService } from './cart.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Injectable()
 export class CartEffects {
 
+    /**
+     * when update cart, save to DB
+     */
     @Effect({ dispatch: false })
     persistence$: Observable<any> = this.actions$
-        .ofType(cartActions.UPDATE, cartActions.DELETE, cartActions.SET_VALUE)
+        .ofType(cartActions.ADD, cartActions.UPDATE, cartActions.DELETE, cartActions.SET_VALUE)
         .switchMap(() => of(this.cartService.saveToStorage()));
 
     /**
@@ -30,7 +34,7 @@ export class CartEffects {
      * and fetch product information if needed
      */
     @Effect()
-    search$: Observable<Action> = this.actions$
+    load$: Observable<Action> = this.actions$
         .ofType(cartActions.LOAD)
         .switchMap(
         () => of(this.cartService.loadFromStorage())
@@ -41,7 +45,19 @@ export class CartEffects {
                 return new cartActions.LoadSuccessAction(cartItems);
             }));
 
+
+    /**
+     * show succesfuly alert when user click ADD_TO_CART btn
+     */
+    @Effect({ dispatch: false })
+    add$: Observable<Action> = this.actions$
+        .ofType(cartActions.ADD)
+        .switchMap(() => this.toastr.success('Product has been added to your cart!', 'Success!', { toastLife: 3000 }));
+
     constructor(private actions$: Actions,
         private cartService: CartService,
-        private productService: ProductService) { }
+        private productService: ProductService,
+        public toastr: ToastsManager) {
+
+    }
 }

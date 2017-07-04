@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
@@ -27,7 +29,10 @@ import { QuantityPickerComponent } from './shared/quantity-picker/quantity-picke
 import { SfCurrencyPipe } from './shared/sf-currency.pipe';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { CartLiteComponent } from './cart/cart-lite/cart-lite.component';
-
+import { HeaderComponent } from './layout/header/header.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ToastOptions } from 'ng2-toastr';
+import { CustomToastOption } from './shared/custom-toast-option';
 
 @NgModule({
   declarations: [
@@ -40,15 +45,19 @@ import { CartLiteComponent } from './cart/cart-lite/cart-lite.component';
     QuantityPickerComponent,
     SfCurrencyPipe,
     SpinnerComponent,
-    CartLiteComponent
+    CartLiteComponent,
+    HeaderComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     FormsModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
+    ToastModule.forRoot(),
     StoreModule.provideStore(reducer),
+    RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(CategoryEffects),
     EffectsModule.run(ProductEffects),
@@ -57,7 +66,8 @@ import { CartLiteComponent } from './cart/cart-lite/cart-lite.component';
   providers: [
     ApiService,
     ProductService,
-    CartService
+    CartService,
+    { provide: ToastOptions, useClass: CustomToastOption }
   ],
   bootstrap: [AppComponent]
 })

@@ -8,13 +8,14 @@ export interface State {
     cartItems: CartItem[];
 };
 
-const initialState: State = {
+export const initialState: State = {
     loading: false,
     cartItems: []
 };
 
 export function reducer(state = initialState, action: cartActions.Actions): State {
     switch (action.type) {
+        case cartActions.ADD:
         case cartActions.UPDATE:
         case cartActions.SET_VALUE: {
             let cartItems = [...state.cartItems];
@@ -27,11 +28,11 @@ export function reducer(state = initialState, action: cartActions.Actions): Stat
                 cartItems = [...state.cartItems, cartItem];
             } else {
                 // update the quantity based on different action
-                // if UPDATE: use the param to calculate the quantity
+                // if UPDATE or ADD: use the param to calculate the quantity
                 // if SET_VALUE: use the param quantity directly
-                const quantity = action.type === cartActions.UPDATE ?
-                    cartItems[index].quantity + cartItem.quantity
-                    : cartItem.quantity;
+                const quantity = action.type === cartActions.SET_VALUE ?
+                    cartItem.quantity :
+                    cartItems[index].quantity + cartItem.quantity;
                 cartItems[index] = new CartItem(cartItem.product, quantity)
 
                 // validation if quantity is invalid, delete it directly
@@ -44,12 +45,12 @@ export function reducer(state = initialState, action: cartActions.Actions): Stat
         }
         case cartActions.DELETE: {
             const productId = action.payload;
-            let cartItems = [...state.cartItems];
+            const cartItems = [...state.cartItems];
 
             // remove cart Item if can find one
             const index = _.findIndex(state.cartItems, { productId });
             if (index !== -1) {
-                cartItems = _.pullAt(cartItems, [index]);
+                _.pullAt(cartItems, [index]);
             }
 
             return Object.assign({}, state, { cartItems });

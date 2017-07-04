@@ -9,6 +9,13 @@
   }
 }
 
+.btn-outline-primary {
+  &:focus {
+    background: $white;
+    color: $brand-primary;
+  }
+}
+
 .btn-primary {
   @include hover-focus {
     background-color: lighten($brand-primary, 15%);
@@ -26,4 +33,8 @@ i {
 
 h1 {
   font-family: $font-family-serif;
+}
+
+#toast-container>div {
+  box-shadow: none;
 }
