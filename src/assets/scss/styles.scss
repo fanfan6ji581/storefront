@@ -11,6 +11,7 @@
 @import "mixins/aspect-ratio";
 @import "mixins/vertial-align";
 @import "mixins/position";
+@import "mixins/vendor-prefix";
 // ===========================================
 // COMPONENTS
 // ===========================================
@@ -22,6 +23,7 @@
 // ===========================================
 // PAGES
 // ===========================================
+@import "pages/landing";
 @import "pages/category";
 @import "pages/cart";
 @import "pages/cart-lite";

@@ -1,7 +1,7 @@
 <div class="quantity-picker">
   <div class="d-flex">
     <div class="qp-input">
-      <input type="number" [(ngModel)]="quantity" min="1" (change)="onChange($event)">
+      <input type="number" [(ngModel)]="quantity" min="1" (change)="onChange()">
     </div>
     <div class="qp-actions">
       <a (click)="increment()">+</a>

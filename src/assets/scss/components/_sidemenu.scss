@@ -9,27 +9,21 @@
     background: #373a47;
     padding: 0.75em 1.5em 0;
     font-size: 1.15em;
-    -webkit-transform: translate3d(-20em, 0, 0);
-    transform: translate3d(-20em, 0, 0);
-    -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-    transition: -webkit-transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    @include prefix(transition, transform 0.6s $transition-timing);
+    @include prefix(transform, translate3d(-20em, 0, 0));
     .menu {
         height: 100%;
         .navitem-list {
             list-style-type: none;
             padding: 0;
             .nav-item {
-                -webkit-transform: translate3d(-100%, 0, 0);
-                transform: translate3d(-100%, 0, 0);
-                -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-                transition: -webkit-transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+                @include prefix(transform, translate3d(-100%, 0, 0));
+                @include prefix(transition, transform 0.8s $transition-timing);
                 &:nth-child(2) {
-                    -webkit-transition-delay: 0.05s;
-                    transition-delay: 0.05s;
+                    @include prefix(transition-delay, 0.05s);
                 }
                 &:nth-child(3) {
-                    -webkit-transition-delay: 0.1s;
-                    transition-delay: 0.1s;
+                    @include prefix(transition-delay, 0.1s);
                 }
             }
         }
@@ -55,17 +49,12 @@
 
 .show-menu {
     #menu-wrap {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        -webkit-transition: -webkit-transform 0.8s;
-        transition: transform 0.8s;
-        -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-        transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        @include prefix(transform, translate3d(0, 0, 0));
+        @include prefix(transition, transform 0.8s $transition-timing);
         .menu {
             .navitem-list {
                 .nav-item {
-                    -webkit-transform: translate3d(0, 0, 0);
-                    transform: translate3d(0, 0, 0);
+                    @include prefix(transform, translate3d(0, 0, 0));
                 }
             }
         }
@@ -78,6 +67,5 @@
 }
 
 .menu-overlay {
-    -webkit-transition: background-color 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-    transition: background-color 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    @include prefix(transition, background-color 0.6s $transition-timing);
 }

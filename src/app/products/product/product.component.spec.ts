@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs/observable/of';
 
@@ -16,6 +16,16 @@ describe('ProductComponent', () => {
   let component: ProductComponent;
   let fixture: ComponentFixture<ProductComponent>;
 
+  function setup(params?: { storeSelectReturnValue: any }) {
+    const store = TestBed.get(Store);
+    if (params) {
+      store.select.and.returnValue(params.storeSelectReturnValue);
+    }
+    return {
+      store,
+    };
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -27,13 +37,30 @@ describe('ProductComponent', () => {
       imports: [
         FormsModule,
         RouterTestingModule,
-        StoreModule.provideStore(reducer),
+      ],
+      providers: [
+        {
+          provide: Store,
+          useValue: jasmine.createSpyObj('Store', ['select', 'dispatch'])
+        },
       ]
     })
       .compileComponents();
   }));
 
+  const product = {
+    'id': 1,
+    'title': 'Blue Stripe Stoneware Plate',
+    'brand': 'Kiriko',
+    'price': 40,
+    'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus pulvinar, placerat turpis ac, interdum metus. In eget massa sed enim hendrerit auctor a eget.',
+    'image': '/assets/images/blue-stripe-stoneware-plate.jpg',
+    'slug': 'blue-stripe-stoneware-plate'
+  } as Product;
+
+
   beforeEach(() => {
+    setup({ storeSelectReturnValue: of(product) });
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

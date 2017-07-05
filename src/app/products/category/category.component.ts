@@ -19,7 +19,6 @@ export class CategoryComponent implements OnInit {
   constructor(private store: Store<fromRoot.State>) {
     this.products$ = store.select(fromRoot.getCategoryProducts);
     this.loading$ = store.select(fromRoot.getCategoryLoading);
-
   }
 
   ngOnInit() {

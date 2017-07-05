@@ -71,3 +71,4 @@ $break-point-sm:  nth(nth($grid-breakpoints, 2), 2);
 $break-point-md:  nth(nth($grid-breakpoints, 3), 2);
 $break-point-lg:  nth(nth($grid-breakpoints, 4), 2);
 $break-point-xl:  nth(nth($grid-breakpoints, 5), 2);
+$transition-timing: cubic-bezier(0.2, 1, 0.3, 1);

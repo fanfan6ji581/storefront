@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { of } from 'rxjs/observable/of';
 
 import { CategoryComponent } from './category.component';
 import { SfCurrencyPipe } from '../../shared/sf-currency.pipe';
 import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { ProductCardComponent } from '../product/product-card/product-card.component';
-import { reducer } from '../../shared/root.reducers';
+import * as testingModels from '../../shared/testing/models';
 
 describe('CategoryComponent', () => {
   let component: CategoryComponent;
@@ -21,7 +22,12 @@ describe('CategoryComponent', () => {
       ],
       imports: [
         RouterTestingModule,
-        StoreModule.provideStore(reducer),
+      ],
+      providers: [
+        {
+          provide: Store,
+          useValue: jasmine.createSpyObj('Store', ['select', 'dispatch'])
+        },
       ]
     })
       .compileComponents();
@@ -31,9 +37,21 @@ describe('CategoryComponent', () => {
     fixture = TestBed.createComponent(CategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.loading$ = of(false);
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+    const store = TestBed.get(Store);
+    expect(store.dispatch).toHaveBeenCalled();
   });
+
+
+  it('should be created', () => {
+    component.products$ = of(testingModels.products)
+    expect(component).toBeTruthy();
+    const store = TestBed.get(Store);
+    expect(store.dispatch).toHaveBeenCalled();
+  });
+
 });

@@ -10,8 +10,9 @@ import { CartItem } from './cart-item.model';
 import { Observable } from 'rxjs/Observable';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as cartActions from './cart.actions';
+import * as testingModels from '../../shared/testing/models';
 
-describe('CartEffects', () => {
+describe('Effects: CartEffects', () => {
     beforeEach(() => TestBed.configureTestingModule({
         imports: [
             EffectsTestingModule
@@ -58,26 +59,7 @@ describe('CartEffects', () => {
         };
     }
 
-    const products = [
-        {
-            'id': 1,
-            'title': 'Blue Stripe Stoneware Plate',
-            'brand': 'Kiriko',
-            'price': 40,
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus pulvinar, placerat turpis ac, interdum metus. In eget massa sed enim hendrerit auctor a eget.',
-            'image': 'blue-stripe-stoneware-plate.jpg',
-            'slug': 'blue-stripe-stoneware-plate'
-        } as Product,
-        {
-            'id': 2,
-            'title': 'Hand Painted Blue Flat Dish',
-            'brand': 'Kiriko',
-            'price': 28,
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus pulvinar, placerat turpis ac, interdum metus. In eget massa sed enim hendrerit auctor a eget arcu. Curabitur ac pharetra nisl, sit amet mattis dolor.',
-            'image': 'hand-painted-blue-flat-dish.jpg',
-            'slug': 'blue-stripe-stoneware-plate'
-        } as Product
-    ]
+   
 
     const localStorageProducts = [
         {
@@ -93,12 +75,12 @@ describe('CartEffects', () => {
     const cartItems = [
         {
             productId: 1,
-            product: products[0],
+            product: testingModels.product1,
             quantity: 1
         },
         {
             productId: 2,
-            product: products[1],
+            product: testingModels.product2,
             quantity: 2
         }
     ];
@@ -106,7 +88,7 @@ describe('CartEffects', () => {
     describe('load$', () => {
         it('should return a cart items with product infomation in it with cartLoadAction', fakeAsync(() => {
             const { toastr, runner, cartEffects } = setup({
-                loadProductByIdReturnValue: Observable.of(products),
+                loadProductByIdReturnValue: Observable.of(testingModels.products),
                 loadFromStorageReturnValue: localStorageProducts
             });
 
@@ -123,7 +105,7 @@ describe('CartEffects', () => {
     describe('add$', () => {
         it('should call toast service success() method', fakeAsync(() => {
             const { toastr, runner, cartEffects } = setup({
-                loadProductByIdReturnValue: Observable.of(products),
+                loadProductByIdReturnValue: Observable.of(testingModels.products),
                 loadFromStorageReturnValue: localStorageProducts
             });
 

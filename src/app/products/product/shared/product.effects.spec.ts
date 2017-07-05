@@ -7,8 +7,9 @@ import { ProductService } from '../../shared/product.service';
 import { Product } from '../../shared/product.model';
 import { Observable } from 'rxjs/Observable';
 import * as productActions from './product.actions';
+import * as testingModels from '../../../shared/testing/models';
 
-describe('ProductEffects', () => {
+describe('Effects: ProductEffects', () => {
     beforeEach(() => TestBed.configureTestingModule({
         imports: [
             EffectsTestingModule
@@ -34,21 +35,11 @@ describe('ProductEffects', () => {
         };
     }
 
-    const product = {
-        'id': 1,
-        'title': 'Blue Stripe Stoneware Plate',
-        'brand': 'Kiriko',
-        'price': 40,
-        'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus pulvinar, placerat turpis ac, interdum metus. In eget massa sed enim hendrerit auctor a eget.',
-        'image': 'blue-stripe-stoneware-plate.jpg',
-        'slug': 'blue-stripe-stoneware-plate'
-    } as Product;
-
     describe('select$', () => {
         it('should return a new product.SelectSuccessAction, with the product, on success', fakeAsync(() => {
-            const { runner, productEffects } = setup({ selectProductReturnValue: Observable.of(product) });
+            const { runner, productEffects } = setup({ selectProductReturnValue: Observable.of(testingModels.product1) });
 
-            const expectedResult = new productActions.SelectSuccessAction(product);
+            const expectedResult = new productActions.SelectSuccessAction(testingModels.product1);
             runner.queue(new productActions.SelectAction('blue-stripe-stoneware-plate'));
 
             let result = null;

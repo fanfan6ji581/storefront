@@ -7,8 +7,9 @@ import { ProductService } from '../../shared/product.service';
 import { Product } from '../../shared/product.model';
 import { Observable } from 'rxjs/Observable';
 import * as categoryActions from './category.actions';
+import * as testingModels from '../../../shared/testing/models';
 
-describe('CategoryEffects', () => {
+describe('Effects: CategoryEffects', () => {
     beforeEach(() => TestBed.configureTestingModule({
         imports: [
             EffectsTestingModule
@@ -34,32 +35,11 @@ describe('CategoryEffects', () => {
         };
     }
 
-    const products = [
-        {
-            'id': 1,
-            'title': 'Blue Stripe Stoneware Plate',
-            'brand': 'Kiriko',
-            'price': 40,
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus pulvinar, placerat turpis ac, interdum metus. In eget massa sed enim hendrerit auctor a eget.',
-            'image': 'blue-stripe-stoneware-plate.jpg',
-            'slug': 'blue-stripe-stoneware-plate'
-        } as Product,
-        {
-            'id': 2,
-            'title': 'Hand Painted Blue Flat Dish',
-            'brand': 'Kiriko',
-            'price': 28,
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus pulvinar, placerat turpis ac, interdum metus. In eget massa sed enim hendrerit auctor a eget arcu. Curabitur ac pharetra nisl, sit amet mattis dolor.',
-            'image': 'hand-painted-blue-flat-dish.jpg',
-            'slug': 'blue-stripe-stoneware-plate'
-        } as Product
-    ]
-
     describe('load$', () => {
         it('should return a new categoryActions.LoadAction, with all products, on success', fakeAsync(() => {
-            const { runner, categoryEffects } = setup({ loadProductsReturnValue: Observable.of(products) });
+            const { runner, categoryEffects } = setup({ loadProductsReturnValue: Observable.of(testingModels.products) });
 
-            const expectedResult = new categoryActions.LoadSuccessAction(products);
+            const expectedResult = new categoryActions.LoadSuccessAction(testingModels.products);
             runner.queue(new categoryActions.LoadAction());
 
             let result = null;

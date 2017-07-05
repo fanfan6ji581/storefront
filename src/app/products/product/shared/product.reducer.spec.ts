@@ -2,8 +2,9 @@ import { reducer } from './product.reducer';
 import * as fromProduct from './product.reducer';
 import * as productActions from './product.actions';
 import { Product } from '../../shared/product.model';
+import * as testingModels from '../../../shared/testing/models';
 
-describe('ProductReducer', () => {
+describe('Reducer: ProductReducer', () => {
   describe('undefined action', () => {
     it('should return the default state', () => {
       const action = {} as any;
@@ -14,23 +15,13 @@ describe('ProductReducer', () => {
 
   describe('SELECT_SUCCESS action', () => {
     it('should select a product', () => {
-      const product = {
-        'id' : 1,
-        'title': 'Blue Stripe Stoneware Plate',
-        'brand': 'Kiriko',
-        'price': 40,
-        'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus pulvinar, placerat turpis ac, interdum metus. In eget massa sed enim hendrerit auctor a eget.',
-        'image': 'blue-stripe-stoneware-plate.jpg',
-        'slug': 'blue-stripe-stoneware-plate'
-      } as Product;
-
       const expectedResult = {
         loading: false,
         loaded: true,
-        product: product
+        product: testingModels.product1
       } as fromProduct.State;
 
-      const result = reducer(fromProduct.initialState, new productActions.SelectSuccessAction(product));
+      const result = reducer(fromProduct.initialState, new productActions.SelectSuccessAction(testingModels.product1));
       expect(result).toEqual(expectedResult);
     });
   });
