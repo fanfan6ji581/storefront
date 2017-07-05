@@ -19,7 +19,7 @@
             <p class="text-muted">{{product.description}}</p>
             <hr>
             <sf-quantity-picker [quantity]="quantity" (change)="onQuantityChange($event)"></sf-quantity-picker>
-            <a class="btn btn-lg btn-primary ml-1" tabindex="1">ADD TO CART</a>
+            <a class="btn btn-lg btn-primary ml-1" tabindex="1" (click)="onAddToCart()">ADD TO CART</a>
           </div>
         </div>
       </div>

@@ -9,7 +9,6 @@ import { CartItem } from '../../../cart/shared/cart-item.model';
 @Component({
   selector: 'sf-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
 
@@ -25,7 +24,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   onAddToCart() {
-    this.store.dispatch(new cartActions.UpdateAction(new CartItem(this.product, 1)));
+    this.store.dispatch(new cartActions.AddAction(new CartItem(this.product, 1)));
   }
 
 }

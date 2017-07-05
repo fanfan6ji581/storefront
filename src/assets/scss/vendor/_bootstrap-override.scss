@@ -34,3 +34,7 @@ i {
 h1 {
   font-family: $font-family-serif;
 }
+
+#toast-container>div {
+  box-shadow: none;
+}

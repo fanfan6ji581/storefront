@@ -7,7 +7,7 @@ export interface State {
     products: Product[];
 };
 
-const initialState: State = {
+export const initialState: State = {
     loaded: false,
     loading: false,
     products: []

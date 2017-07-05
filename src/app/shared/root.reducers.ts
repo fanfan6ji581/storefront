@@ -5,6 +5,7 @@ import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
 
+import * as fromRouter from '@ngrx/router-store';
 import * as fromCategory from '../products/category/shared/category.reducer';
 import * as fromProduct from '../products/product/shared/product.reducer';
 import * as fromCart from '../cart/shared/cart.reducer';
@@ -13,12 +14,14 @@ export interface State {
   category: fromCategory.State;
   product: fromProduct.State;
   cart: fromCart.State;
+  router: fromRouter.RouterState;
 }
 
 const reducers = {
   category: fromCategory.reducer,
   product: fromProduct.reducer,
-  cart: fromCart.reducer
+  cart: fromCart.reducer,
+  router: fromRouter.routerReducer,
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
