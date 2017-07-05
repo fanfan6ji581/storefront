@@ -44,6 +44,9 @@ export class SetValueAction implements Action {
     constructor(public payload: CartItem) { }
 }
 
+/**
+ * when cart page initilized, load shopping cart info from local storage
+ */
 export class LoadAction implements Action {
     readonly type = LOAD;
     payload;

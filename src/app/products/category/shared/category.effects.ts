@@ -20,7 +20,7 @@ import { Product } from '../../shared/product.model';
 export class CategoryEffects {
 
     @Effect()
-    search$: Observable<Action> = this.actions$
+    load$: Observable<Action> = this.actions$
         .ofType(categoryActions.LOAD)
         .switchMap(() => this.productService.loadProducts()
             .map((products: Product[]) => new categoryActions.LoadSuccessAction(products))

@@ -15,6 +15,7 @@ describe('ProductReducer', () => {
   describe('SELECT_SUCCESS action', () => {
     it('should select a product', () => {
       const product = {
+        'id' : 1,
         'title': 'Blue Stripe Stoneware Plate',
         'brand': 'Kiriko',
         'price': 40,

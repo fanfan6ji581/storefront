@@ -36,8 +36,7 @@ export class CartEffects {
     @Effect()
     load$: Observable<Action> = this.actions$
         .ofType(cartActions.LOAD)
-        .switchMap(
-        () => of(this.cartService.loadFromStorage())
+        .switchMap(() => of(this.cartService.loadFromStorage())
             .mergeMap(
             (cartItems) => this.productService.loadProductsByProudctIds(cartItems.map(cartItem => cartItem.productId))
             , (cartItems: CartItem[], products: Product[]) => {

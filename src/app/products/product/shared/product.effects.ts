@@ -20,7 +20,7 @@ import { Product } from '../../shared/product.model';
 export class ProductEffects {
 
     @Effect()
-    search$: Observable<Action> = this.actions$
+    select$: Observable<Action> = this.actions$
         .ofType(productActions.SELECT)
         .map(toPayload)
         .switchMap((slug: string) => this.productService.loadProductBySlug(slug)
