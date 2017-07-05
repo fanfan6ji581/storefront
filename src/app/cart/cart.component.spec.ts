@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule, Store } from '@ngrx/store';
+import { FormsModule } from '@angular/forms';
 
 import { CartComponent } from './cart.component';
+import { SfCurrencyPipe } from '../shared/sf-currency.pipe';
+import { SpinnerComponent } from '../shared/spinner/spinner.component';
+import { QuantityPickerComponent } from '../shared/quantity-picker/quantity-picker.component';
+import { reducer } from '../shared/root.reducers';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -8,9 +15,19 @@ describe('CartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartComponent ]
+      declarations: [
+        CartComponent,
+        SfCurrencyPipe,
+        SpinnerComponent,
+        QuantityPickerComponent,
+      ],
+      imports: [
+        RouterTestingModule,
+        FormsModule,
+        StoreModule.provideStore(reducer),
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

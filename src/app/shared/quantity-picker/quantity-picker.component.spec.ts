@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuantityPickerComponent } from './quantity-picker.component';
+import { FormsModule } from '@angular/forms';
 
 describe('QuantityPickerComponent', () => {
   let component: QuantityPickerComponent;
@@ -8,9 +9,10 @@ describe('QuantityPickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuantityPickerComponent ]
+      declarations: [QuantityPickerComponent],
+      imports: [FormsModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

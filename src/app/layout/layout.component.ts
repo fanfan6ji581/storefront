@@ -10,7 +10,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private store: Store<fromRoot.State>,
+  constructor(
     private toastr: ToastsManager,
     private vcr: ViewContainerRef
   ) {
