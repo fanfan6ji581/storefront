@@ -6,7 +6,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angu
 })
 export class QuantityPickerComponent implements OnInit {
   @Output() change: EventEmitter<number> = new EventEmitter<number>();
-  @Input() quantity = 0;
+  @Input() quantity = 1;
 
   constructor() { }
 
@@ -23,6 +23,9 @@ export class QuantityPickerComponent implements OnInit {
     this.onChange();
   }
 
+  /**
+   * validate quantity cannot go below 1
+   */
   onChange() {
     if (this.quantity < 1) {
       this.quantity = 1;

@@ -12,7 +12,7 @@ import { reducer } from '../../shared/root.reducers';
 import * as testingModels from '../../shared/testing/models';
 import * as cartActions from '../shared/cart.actions';
 
-describe('CartLiteComponent', () => {
+describe('Component: CartLiteComponent', () => {
   let component: CartLiteComponent;
   let fixture: ComponentFixture<CartLiteComponent>;
   let de: DebugElement;

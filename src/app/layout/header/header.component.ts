@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../shared/root.reducers';
 import { CartItem } from '../../cart/shared/cart-item.model';
@@ -15,6 +16,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(private store: Store<fromRoot.State>) {
     this.cartItems$ = store.select(fromRoot.getCartCartItems);
+    // when router change, auto close the menus
+    store.select(fromRoot.getRouterState).subscribe(() => {
+      this.isMenuShow = false;
+      this.isCartPopupShow = false;
+    });
   }
 
   ngOnInit() {

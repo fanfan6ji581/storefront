@@ -20,6 +20,7 @@
       "prefix": "sf",
       "styles": [
         "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
+        "../node_modules/animate.css/animate.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "assets/scss/styles.scss"
       ],

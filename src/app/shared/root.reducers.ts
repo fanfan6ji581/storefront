@@ -48,3 +48,5 @@ export const getProductLoading = createSelector(getProductState, fromProduct.get
 export const getCartState = (state: State) => state.cart;
 export const getCartCartItems = createSelector(getCartState, fromCart.getCartItems);
 export const getCartLoading = createSelector(getCartState, fromCart.getLoading);
+
+export const getRouterState = (state: State) => state.router;

@@ -11,7 +11,7 @@ import { CartItem } from '../../../cart/shared/cart-item.model';
 import * as cartActions from '../../../cart/shared/cart.actions';
 import * as testingModels from '../../../shared/testing/models';
 
-describe('ProductCardComponent', () => {
+describe('Component: ProductCardComponent', () => {
   let component: ProductCardComponent;
   let fixture: ComponentFixture<ProductCardComponent>;
 
@@ -49,7 +49,7 @@ describe('ProductCardComponent', () => {
     component.product = testingModels.product2;
     fixture.detectChanges();
     const titltEl = fixture.debugElement.query(By.css('h5')).nativeElement;
-    expect(titltEl.textContent).toContain(testingModels.product2.title);
+    expect(titltEl.textContent).toBe(testingModels.product2.title);
   });
 
   it('should trigger add_to_cart action when click add_to_cart button', () => {

@@ -9,7 +9,7 @@ import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { CartLiteComponent } from '../../cart/cart-lite/cart-lite.component';
 import { reducer } from '../../shared/root.reducers';
 
-describe('HeaderComponent', () => {
+describe('Component: HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   function setup(params?: { storeSelectReturnValue: any }) {

@@ -59,8 +59,6 @@ describe('Effects: CartEffects', () => {
         };
     }
 
-   
-
     const localStorageProducts = [
         {
             productId: 1,

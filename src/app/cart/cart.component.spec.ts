@@ -15,7 +15,7 @@ import * as testingModels from '../shared/testing/models';
 import * as cartActions from './shared/cart.actions';
 import { CartItem } from './shared/cart-item.model';
 
-describe('CartComponent', () => {
+describe('Component: CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
   let de: DebugElement;
@@ -101,7 +101,7 @@ describe('CartComponent', () => {
 
     const store = TestBed.get(Store);
     expect(store.dispatch).toHaveBeenCalledWith(
-      new cartActions.SetValueAction(new CartItem(testingModels.product1, testingModels.cartItems[0].quantity+1)));
+      new cartActions.SetValueAction(new CartItem(testingModels.product1, testingModels.cartItems[0].quantity + 1)));
 
     const minusBtnEl = fixture.debugElement.query(By.css('.responsive-table .quantity-picker .qp-actions a:nth-child(2)'));
     minusBtnEl.triggerEventHandler('click', null);

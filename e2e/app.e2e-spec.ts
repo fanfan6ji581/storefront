@@ -1,52 +1,82 @@
-import { StorefrontPage } from './app.po';
-import { browser, by, element } from 'protractor';
+import { CategoryPage, ProductPage, CartPage } from './app.po';
 
-describe('storefront App', () => {
-  let page: StorefrontPage;
+describe('category page', () => {
+  let page: CategoryPage;
 
   beforeEach(() => {
-    page = new StorefrontPage();
+    page = new CategoryPage();
   });
 
-  it('should show notification when click add to cart', () => {
+  it('should display page title', () => {
     page.navigateTo();
-
-    const productCartImg = element(by.css('sf-root sf-product-card .product-card-cover'));
-    // const btn = element(by.css('sf-root sf-product-card .actions .btn-primary'));
-    browser.actions().mouseMove(productCartImg).perform();
-    browser.wait(element(by.css('sf-root sf-product-card .btn-primary')).isPresent);
-
-    // const btn = page.getFirstProductAddToCartBtn();
-    // btn.click();
-    // debugger
-    // browser.wait(() => {
-      let notification = page.getSuccessNotification();
-      expect(notification.isPresent()).toBeTruthy();
-    // }, 1000);
+    page.getTitle().then(text => expect(text).toEqual('Plates'));
   });
 
-  // it('should show navigate to another page', () => {
-  //   // page.navigateTo();
-  //   // const btn = page.getFirstProductGoToDetailBtn();
-  //   // btn.click();
-  //   // browser.wait(() => {
-  //   //   let notification = page.getSuccessNotification();
-  //   //   browser.getCurrentUrl().then(url => {
-  //   //     expect(url.indexOf('product') != -1).toBeTruthy();
-  //   //   });
-  //   // }, 1000);
-  // });
+  it('should display 6 products', () => {
+    page.navigateTo();
+    page.getProductCards().count().then((size: number) => expect(size).toEqual(6));
+  });
+});
 
-  // it('should display page title', () => {
-  //   page.navigateTo();
-  //   page.getTitle().then(text => expect(text).toEqual('Plates'));
-  // });
+describe('product page', () => {
+  let page: ProductPage;
 
-  // it('should display 6 products', () => {
-  //   page.navigateTo();
-  //   page.getProductCardsCount().then((size: number) => expect(size).toEqual(6));
-  // });
+  beforeEach(() => {
+    page = new ProductPage();
+  });
+
+  it('should display page title', () => {
+    page.navigateTo();
+    page.getTitle().then(text => expect(text).toEqual('Blue Stripe Stoneware Plate'));
+  });
+});
 
 
+describe('cart page', () => {
+  let page: CartPage;
+
+  beforeEach(() => {
+    page = new CartPage();
+  });
+
+  it('should display page title', () => {
+    page.navigateTo();
+    page.getTitle().then(text => expect(text).toEqual('Shopping Cart'));
+  });
+
+  it('should display empty cart msg title', () => {
+    page.navigateTo();
+    page.getEmptyCartMsg().then(text => expect(text).toEqual('Empty Shopping Cart'));
+  });
+});
+
+describe('add to cart workflow', () => {
+  let productPage: ProductPage;
+  let cartPage: CartPage;
+
+  beforeEach(() => {
+    productPage = new ProductPage();
+    cartPage = new CartPage();
+  });
+
+  it('when add product to cart, cart page should display it', () => {
+
+    // goto productPage and click AddToCart
+    productPage.navigateTo();
+    const btn = productPage.getAddToCartBtn();
+    btn.click();
+
+    // goto cartPage to verify it
+    cartPage.navigateTo();
+    cartPage.getCartItemCount().then((size: number) => expect(size).toEqual(1));
+
+    // click delete btn
+    const deleteBtn = cartPage.getFirstCartItemDeleteBtn();
+    deleteBtn.click();
+
+    // varify empty msg shows
+    cartPage.getEmptyCartMsg().then(text => expect(text).toEqual('Empty Shopping Cart'));
+
+  });
 
 });
