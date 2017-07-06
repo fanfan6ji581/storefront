@@ -60,9 +60,9 @@
                 width: 4em;
                 @include prefix(transform, translate3d(-19em, 0, 0));
             }
-            @media screen and (max-width: $break-point-sm) {
+            @media screen and (max-width: 25em) {
                 width: 4em;
-                @include prefix(transform, translate3d(-150%, 0, 0));
+                @include prefix(transform, translate3d(-2em, 0, 0));
             }
         }
         .cart-popup {
