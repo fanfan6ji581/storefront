@@ -11,10 +11,11 @@ A single page application e-commerce website.
 * Used [ngrx/store](https://github.com/ngrx/store) to deal with the state management (Angualr 4 version of Redux)
 * [npm](https://www.npmjs.com/) is used to maintain the dependencies.
 
-### CSS Framework
+### CSS
 * [SCSS](http://sass-lang.com/) is being used as the pre css compiler.
 * [Bootstrap 4](https://v4-alpha.getbootstrap.com/) is used as a base framework.
 * [Font Awesome](http://fontawesome.io/) is used for the icons
+* It's inside the [scss](./src/assets/scss) folder
 
 ### Testing
 

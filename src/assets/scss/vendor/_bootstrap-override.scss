@@ -35,6 +35,10 @@ h1 {
   font-family: $font-family-serif;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 #toast-container>div {
   box-shadow: none;
 }
