@@ -18,12 +18,14 @@ export class ProductComponent implements OnInit {
   product$: Observable<Product>;
   product: Product;
   loading$: Observable<Boolean>;
+  loaded$: Observable<Boolean>;
   quantity = 1;
 
   constructor(private route: ActivatedRoute, private store: Store<fromRoot.State>) {
     this.product$ = store.select(fromRoot.getProductSelect);
     this.product$.subscribe(p => this.product = p);
     this.loading$ = store.select(fromRoot.getProductLoading);
+    this.loaded$ = store.select(fromRoot.getProductLoaded);
   }
 
   ngOnInit() {

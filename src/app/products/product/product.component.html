@@ -25,6 +25,11 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="(loaded$|async) && !(product$|async)">
+    <h2 class="my-4 text-center">Oops, No such product</h2>
+  </div>
+
   <!--loading-->
   <sf-spinner *ngIf="(loading$|async)"></sf-spinner>
 </div>

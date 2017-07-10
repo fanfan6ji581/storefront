@@ -27,7 +27,13 @@ export function reducer(state = initialState, action: productActions.Actions): S
             return Object.assign({}, state, {
                 loading: false,
                 loaded: true,
-                product
+            });
+        }
+        case productActions.SELECT_FAIL: {
+            return Object.assign({}, state, {
+                loading: false,
+                loaded: true,
+                product: null
             });
         }
         default: {
