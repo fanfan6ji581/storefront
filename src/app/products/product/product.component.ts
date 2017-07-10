@@ -29,13 +29,10 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    // load product by params slug
-    if (!this.product) {
-      this.route.params.subscribe(params => {
-        // get product by slug
-        this.store.dispatch(new product.SelectAction(params['slug']));
-      });
-    }
+    this.route.params.subscribe(params => {
+      // load product by params slug
+      this.store.dispatch(new product.SelectAction(params['slug']));
+    });
   }
 
   onQuantityChange(quantity: number) {

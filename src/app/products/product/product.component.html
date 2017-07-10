@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="product">
+  <div *ngIf="product$ | async; let product">
     <nav class="breadcrumb my-2 animated fadeIn">
       <a class="breadcrumb-item" [routerLink]="['/category']">Home</a>
       <a class="breadcrumb-item" [routerLink]="['/category']">PLATES</a>

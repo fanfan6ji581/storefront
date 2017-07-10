@@ -68,7 +68,7 @@ describe('Component: ProductComponent', () => {
   });
 
   it('should display different title if model changed', () => {
-    component.product = testingModels.product2;
+    component.product$ = of(testingModels.product2);
     fixture.detectChanges();
     const titltEl = de.query(By.css('h1')).nativeElement;
     expect(titltEl.textContent).toBe(testingModels.product2.title);
