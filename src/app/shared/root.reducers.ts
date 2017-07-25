@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
-import { ActionReducer } from '@ngrx/store';
+import { ActionReducerMap } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
 
@@ -14,26 +13,15 @@ export interface State {
   category: fromCategory.State;
   product: fromProduct.State;
   cart: fromCart.State;
-  router: fromRouter.RouterState;
+  routerReducer: fromRouter.RouterReducerState;
 }
 
-const reducers = {
+export const reducers: ActionReducerMap<State> = {
   category: fromCategory.reducer,
   product: fromProduct.reducer,
   cart: fromCart.reducer,
-  router: fromRouter.routerReducer,
+  routerReducer: fromRouter.routerReducer
 };
-
-const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
-const productionReducer: ActionReducer<State> = combineReducers(reducers);
-
-export function reducer(state: any, action: any) {
-  if (environment.production) {
-    return productionReducer(state, action);
-  } else {
-    return developmentReducer(state, action);
-  }
-}
 
 export const getCategoryState = (state: State) => state.category;
 export const getCategoryProducts = createSelector(getCategoryState, fromCategory.getProducts);
@@ -49,4 +37,4 @@ export const getCartState = (state: State) => state.cart;
 export const getCartCartItems = createSelector(getCartState, fromCart.getCartItems);
 export const getCartLoading = createSelector(getCartState, fromCart.getLoading);
 
-export const getRouterState = (state: State) => state.router;
+export const getRouterState = (state: State) => state.routerReducer;
